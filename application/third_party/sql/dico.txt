@@ -1,0 +1,224 @@
+Dictionnaire de données 
+
+Nom : user.id
+Code : USER.ID
+Type : AUTO_INCREMENT
+Taille : ,
+Commentaire : 
+
+Nom : numIdCard
+Code : NUMIDCARD
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : numPermis
+Code : NUMPERMIS
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : vehicule.id
+Code : VEHICULE.ID
+Type : AUTO_INCREMENT
+Taille : ,
+Commentaire : 
+
+Nom : marque.id
+Code : MARQUE.ID
+Type : AUTO_INCREMENT
+Taille : ,
+Commentaire : 
+
+Nom : archived
+Code : ARCHIVED
+Type : BOOL
+Taille : ,
+Commentaire : 
+
+Nom : firstName
+Code : FIRSTNAME
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : lastName
+Code : LASTNAME
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : adress
+Code : ADRESS
+Type : VARCHAR
+Taille : 250,
+Commentaire : 
+
+Nom : postalCode
+Code : CODEPOSTAL
+Type : VARCHAR
+Taille : 5,
+Commentaire : 
+
+Nom : city
+Code : CITY
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : type.id
+Code : TYPE.ID
+Type : AUTO_INCREMENT
+Taille : ,
+Commentaire : 
+
+Nom : name
+Code : TYPE.NAME
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : doors
+Code : DOORS
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : fuelType
+Code : FUELTYPE
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : consumption 
+Code : CONSUMPTION
+Type : FLOAT
+Taille : ,
+Commentaire : 
+
+Nom : Power
+Code : POWER
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : email
+Code : EMAIL
+Type : VARCHAR
+Taille : 200,
+Commentaire : 
+
+Nom : password
+Code : PASSWORD
+Type : VARCHAR
+Taille : 200,
+Commentaire : 
+
+Nom : avatar
+Code : AVATAR
+Type : VARCHAR
+Taille : 200,
+Commentaire : 
+
+Nom : startedDate
+Code : STARTEDDATE
+Type : DATE
+Taille : ,
+Commentaire : 
+
+Nom : returnDate
+Code : RETURNDATE
+Type : DATE
+Taille : ,
+Commentaire : 
+
+Nom : ended
+Code : ENDED
+Type : BOOL
+Taille : ,
+Commentaire : 
+
+Nom : started
+Code : STARTED
+Type : BOOL
+Taille : ,
+Commentaire : 
+
+Nom : designation
+Code : DESIGNATION
+Type : VARCHAR
+Taille : 200,
+Commentaire : 
+
+Nom : plan.id
+Code : ID.FORFAIT
+Type : AUTO_INCREMENT
+Taille : ,
+Commentaire : 
+
+Nom : modele.id
+Code : ID_MODELE
+Type : AUTO_INCREMENT
+Taille : ,
+Commentaire : 
+
+Nom : mileage 
+Code : MILEAGE
+Type : FLOAT
+Taille : 50,
+Commentaire : 
+
+Nom : pricePerDay
+Code : PRICEPERDAY
+Type : FLOAT
+Taille : ,
+Commentaire : 
+
+Nom : pricePerKm
+Code : PRICEPERKM
+Type : FLOAT
+Taille : ,
+Commentaire : 
+
+Nom : state.id
+Code : STATE.ID
+Type : AUTO_INCREMENT
+Taille : ,
+Commentaire : 
+
+Nom : exists
+Code : TRUC
+Type : BOOL
+Taille : ,
+Commentaire : 
+
+Nom : available
+Code : AVAILABLE
+Type : BOOL
+Taille : ,
+Commentaire : 
+
+Nom : picture
+Code : PICTURE
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : price
+Code : PRICE
+Type : FLOAT
+Taille : ,
+Commentaire : 
+
+Nom : expectedReturnDate
+Code : EXPECTEDRETURNDATE
+Type : DATE
+Taille : ,
+Commentaire : 
+
+Nom : location.id
+Code : LOCATION.ID
+Type : AUTO_INCREMENT
+Taille : ,
+Commentaire : 
+
