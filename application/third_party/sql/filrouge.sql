@@ -1,5 +1,5 @@
 #------------------------------------------------------------
-#        Script MySQL.
+#        Script MySQL_
 #------------------------------------------------------------
 
 
@@ -7,20 +7,20 @@
 # Table: user
 #------------------------------------------------------------
 
-CREATE TABLE user(
-        user.id    Int  Auto_increment  NOT NULL ,
-        firstName  Varchar (50) NOT NULL ,
-        lastName   Varchar (50) NOT NULL ,
-        adress     Varchar (250) ,
-        postalCode Varchar (5) ,
-        city       Varchar (50) ,
-        numIdCard  Varchar (50) ,
-        numPermis  Varchar (50) ,
-        avatar     Varchar (200) ,
-        email      Varchar (200) NOT NULL ,
-        password   Varchar (200) NOT NULL ,
-        archived   Bool NOT NULL
-	,CONSTRAINT user_PK PRIMARY KEY (user.id)
+CREATE TABLE IF NOT EXISTS  `user`(
+        `user_id`    Int  Auto_increment  NOT NULL ,
+        `firstName`  Varchar (50) NOT NULL ,
+        `lastName`   Varchar (50) NOT NULL ,
+        `adress`     Varchar (250) ,
+        `postalCode` Varchar (5) ,
+        `city`       Varchar (50) ,
+        `numIdCard`  Varchar (50) ,
+        `numPermis`  Varchar (50) ,
+        `avatar`     Varchar (200) ,
+        `email`      Varchar (200) NOT NULL ,
+        `password`   Varchar (200) NOT NULL ,
+        `archived`   Boolean
+	,CONSTRAINT `user_PK` PRIMARY KEY (`user_id`)
 )ENGINE=InnoDB;
 
 
@@ -28,12 +28,12 @@ CREATE TABLE user(
 # Table: Plan
 #------------------------------------------------------------
 
-CREATE TABLE Plan(
-        plan.id     Int  Auto_increment  NOT NULL ,
-        designation Varchar (200) NOT NULL ,
-        pricePerKm  Float NOT NULL ,
-        price       Float NOT NULL
-	,CONSTRAINT Plan_PK PRIMARY KEY (plan.id)
+CREATE TABLE IF NOT EXISTS  `Plan`(
+        `plan_id`     Integer  Auto_increment  NOT NULL ,
+        `designation` Varchar (200) NOT NULL ,
+        `pricePerKm`  Float NOT NULL ,
+        `price`       Float NOT NULL
+	,CONSTRAINT `Plan_PK` PRIMARY KEY (`plan_id`)
 )ENGINE=InnoDB;
 
 
@@ -41,10 +41,10 @@ CREATE TABLE Plan(
 # Table: Marque
 #------------------------------------------------------------
 
-CREATE TABLE Marque(
-        marque.id Int  Auto_increment  NOT NULL ,
-        name      Varchar (50) NOT NULL
-	,CONSTRAINT Marque_PK PRIMARY KEY (marque.id)
+CREATE TABLE IF NOT EXISTS   `Marque`(
+        `marque_id` Integer  Auto_increment  NOT NULL ,
+        `name`      Varchar (50) NOT NULL
+	,CONSTRAINT `Marque_PK` PRIMARY KEY (`marque_id`)
 )ENGINE=InnoDB;
 
 
@@ -52,13 +52,13 @@ CREATE TABLE Marque(
 # Table: modele
 #------------------------------------------------------------
 
-CREATE TABLE modele(
-        modele.id Int  Auto_increment  NOT NULL ,
-        name      Varchar (150) NOT NULL ,
-        marque.id Int NOT NULL
-	,CONSTRAINT modele_PK PRIMARY KEY (modele.id)
+CREATE TABLE IF NOT EXISTS  `modele`(
+        `modele_id` Integer  Auto_increment  NOT NULL ,
+        `name`      Varchar (150) NOT NULL ,
+        `marque_id` Integer NOT NULL
+	,CONSTRAINT `modele_PK` PRIMARY KEY (`modele_id`)
 
-	,CONSTRAINT modele_Marque_FK FOREIGN KEY (marque.id) REFERENCES Marque(marque.id)
+	,CONSTRAINT modele_Marque_FK FOREIGN KEY (marque_id) REFERENCES Marque(marque_id)
 )ENGINE=InnoDB;
 
 
@@ -66,11 +66,11 @@ CREATE TABLE modele(
 # Table: type
 #------------------------------------------------------------
 
-CREATE TABLE type(
-        type.id     Int  Auto_increment  NOT NULL ,
-        name        Varchar (50) NOT NULL ,
-        pricePerDay Float NOT NULL
-	,CONSTRAINT type_PK PRIMARY KEY (type.id)
+CREATE TABLE IF NOT EXISTS  `type`(
+        `type_id`     Integer  Auto_increment  NOT NULL ,
+        `name`        Varchar (50) NOT NULL ,
+        `pricePerDay` Float NOT NULL
+	,CONSTRAINT `type_PK` PRIMARY KEY (`type_id`)
 )ENGINE=InnoDB;
 
 
@@ -78,23 +78,22 @@ CREATE TABLE type(
 # Table: vehicule
 #------------------------------------------------------------
 
-CREATE TABLE vehicule(
-        vehicule.id  Int  Auto_increment  NOT NULL ,
-        doors        Int NOT NULL ,
-        fuelType     Varchar (50) NOT NULL ,
-        consumption  Float NOT NULL ,
-        mileage      Float NOT NULL ,
-        power        Int NOT NULL ,
-        available    Bool NOT NULL ,
-        exists       Bool NOT NULL ,
-        picture      Varchar (50) NOT NULL ,
-        co2          Float NOT NULL ,
-        modele.id    Int NOT NULL ,
-        type.id      Int NOT NULL
-	,CONSTRAINT vehicule_PK PRIMARY KEY (vehicule.id)
+CREATE TABLE IF NOT EXISTS  `vehicule`(
+        `vehicule_id`  Integer  Auto_increment  NOT NULL ,
+        `doors`        Integer NOT NULL ,
+        `fuelType`     Varchar (50) NOT NULL ,
+        `consumption`  Float NOT NULL ,
+        `mileage`      Float NOT NULL ,
+        `power`        Integer NOT NULL ,
+        `available`    Boolean NOT NULL ,
+        `exist`        Boolean NOT NULL ,
+        `picture`      Varchar (50) NOT NULL ,
+        `modele_id`    Integer NOT NULL ,
+        `type_id`      Integer NOT NULL
+	,CONSTRAINT `vehicule_PK` PRIMARY KEY (`vehicule_id`)
 
-	,CONSTRAINT vehicule_modele_FK FOREIGN KEY (modele.id) REFERENCES modele(modele.id)
-	,CONSTRAINT vehicule_type0_FK FOREIGN KEY (type.id) REFERENCES type(type.id)
+	,CONSTRAINT `vehicule_modele_FK` FOREIGN KEY (`modele_id`) REFERENCES modele(`modele_id`)
+	,CONSTRAINT `vehicule_type0_FK` FOREIGN KEY (`type_id`) REFERENCES type(`type_id`)
 )ENGINE=InnoDB;
 
 
@@ -102,13 +101,13 @@ CREATE TABLE vehicule(
 # Table: etat
 #------------------------------------------------------------
 
-CREATE TABLE etat(
-        state.id    Int  Auto_increment  NOT NULL ,
-        designation Varchar (250) NOT NULL ,
-        vehicule.id Int NOT NULL
-	,CONSTRAINT etat_PK PRIMARY KEY (state.id)
+CREATE TABLE IF NOT EXISTS `etat`(
+        `state_id`    Integer  Auto_increment  NOT NULL ,
+        `designation` Varchar (250) NOT NULL ,
+        `vehicule_id` Integer NOT NULL
+	,CONSTRAINT `etat_PK` PRIMARY KEY (`state_id`)
 
-	,CONSTRAINT etat_vehicule_FK FOREIGN KEY (vehicule.id) REFERENCES vehicule(vehicule.id)
+	,CONSTRAINT `etat_vehicule_FK` FOREIGN KEY (`vehicule_id`) REFERENCES vehicule(`vehicule_id`)
 )ENGINE=InnoDB;
 
 
@@ -116,20 +115,20 @@ CREATE TABLE etat(
 # Table: location
 #------------------------------------------------------------
 
-CREATE TABLE location(
-        location.id        Int  Auto_increment  NOT NULL ,
-        startedDate        Date NOT NULL ,
-        expectedReturnDate Date NOT NULL ,
-        returnDate         Date ,
-        started            Bool ,
-        ended              Bool ,
-        user.id            Int NOT NULL ,
-        vehicule.id        Int NOT NULL ,
-        plan.id            Int NOT NULL
-	,CONSTRAINT location_PK PRIMARY KEY (location.id)
+CREATE TABLE IF NOT EXISTS  `location`(
+        `location_id`        Integer  Auto_increment  NOT NULL ,
+        `startedDate`        Date NOT NULL ,
+        `expectedReturnDate` Date NOT NULL ,
+        `returnDate`         Date ,
+        `started`            Boolean ,
+        `ended`              Boolean ,
+        `user_id`            Integer NOT NULL ,
+        `vehicule_id`        Integer NOT NULL ,
+        `plan_id`            Integer NOT NULL
+	,CONSTRAINT `location_PK` PRIMARY KEY (`location_id`)
 
-	,CONSTRAINT location_user_FK FOREIGN KEY (user.id) REFERENCES user(user.id)
-	,CONSTRAINT location_vehicule0_FK FOREIGN KEY (vehicule.id) REFERENCES vehicule(vehicule.id)
-	,CONSTRAINT location_Plan1_FK FOREIGN KEY (plan.id) REFERENCES Plan(plan.id)
+	,CONSTRAINT `location_user_FK` FOREIGN KEY (`user_id`) REFERENCES user(`user_id`)
+	,CONSTRAINT `location_vehicule0_FK` FOREIGN KEY (`vehicule_id`) REFERENCES vehicule(`vehicule_id`)
+	,CONSTRAINT `location_Plan1_FK` FOREIGN KEY (`plan_id`) REFERENCES Plan(`plan_id`)
 )ENGINE=InnoDB;
 

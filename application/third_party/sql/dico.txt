@@ -1,4 +1,4 @@
-Dictionnaire de donnÃ©es 
+Dictionnaire de données 
 
 Nom : user.id
 Code : USER.ID
@@ -186,12 +186,6 @@ Type : AUTO_INCREMENT
 Taille : ,
 Commentaire : 
 
-Nom : exists
-Code : TRUC
-Type : BOOL
-Taille : ,
-Commentaire : 
-
 Nom : available
 Code : AVAILABLE
 Type : BOOL
@@ -220,5 +214,17 @@ Nom : location.id
 Code : LOCATION.ID
 Type : AUTO_INCREMENT
 Taille : ,
+Commentaire : 
+
+Nom : exist
+Code : EXIST
+Type : BOOL
+Taille : ,
+Commentaire : 
+
+Nom : numberPlate
+Code : NUMBERPLATE
+Type : VARCHAR
+Taille : 150,
 Commentaire : 
 
