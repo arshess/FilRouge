@@ -3,13 +3,19 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 09 mars 2021 à 11:14
+-- Généré le : mar. 09 mars 2021 à 15:15
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données : `loca-auto`
@@ -23,6 +29,7 @@ USE `loca-auto`;
 -- Structure de la table `agency`
 --
 
+DROP TABLE IF EXISTS `agency`;
 CREATE TABLE IF NOT EXISTS `agency` (
   `agency_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(75) NOT NULL,
@@ -38,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `agency` (
 -- Structure de la table `disponibility`
 --
 
+DROP TABLE IF EXISTS `disponibility`;
 CREATE TABLE IF NOT EXISTS `disponibility` (
   `dispo_id` int(11) NOT NULL AUTO_INCREMENT,
   `designation` varchar(50) DEFAULT NULL,
@@ -50,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `disponibility` (
 -- Structure de la table `location`
 --
 
+DROP TABLE IF EXISTS `location`;
 CREATE TABLE IF NOT EXISTS `location` (
   `location_id` int(11) NOT NULL AUTO_INCREMENT,
   `startedDate` datetime NOT NULL,
@@ -59,14 +68,14 @@ CREATE TABLE IF NOT EXISTS `location` (
   `mileageReturn` int(11) DEFAULT NULL,
   `started` tinyint(1) DEFAULT NULL,
   `ended` tinyint(1) DEFAULT NULL,
-  `agency_id` int(11) NOT NULL,
-  `agency_id_1` int(11) DEFAULT NULL,
+  `agency_start` int(11) NOT NULL,
+  `agency_return` int(11) DEFAULT NULL,
   `plan_id` int(11) NOT NULL,
   `vehicule_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`location_id`),
-  KEY `agency_id` (`agency_id`),
-  KEY `agency_id_1` (`agency_id_1`),
+  KEY `agency_start` (`agency_start`),
+  KEY `agency_return` (`agency_return`),
   KEY `plan_id` (`plan_id`),
   KEY `vehicule_id` (`vehicule_id`),
   KEY `user_id` (`user_id`)
@@ -78,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `location` (
 -- Structure de la table `marque`
 --
 
+DROP TABLE IF EXISTS `marque`;
 CREATE TABLE IF NOT EXISTS `marque` (
   `marque_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -90,6 +100,7 @@ CREATE TABLE IF NOT EXISTS `marque` (
 -- Structure de la table `modele`
 --
 
+DROP TABLE IF EXISTS `modele`;
 CREATE TABLE IF NOT EXISTS `modele` (
   `modele_id` int(11) NOT NULL,
   `name` varchar(150) NOT NULL,
@@ -105,6 +116,7 @@ CREATE TABLE IF NOT EXISTS `modele` (
 -- Structure de la table `plan`
 --
 
+DROP TABLE IF EXISTS `plan`;
 CREATE TABLE IF NOT EXISTS `plan` (
   `plan_id` int(11) NOT NULL AUTO_INCREMENT,
   `designation` varchar(250) NOT NULL,
@@ -119,6 +131,7 @@ CREATE TABLE IF NOT EXISTS `plan` (
 -- Structure de la table `state`
 --
 
+DROP TABLE IF EXISTS `state`;
 CREATE TABLE IF NOT EXISTS `state` (
   `state_id` int(11) NOT NULL AUTO_INCREMENT,
   `designation` varchar(200) NOT NULL,
@@ -133,6 +146,7 @@ CREATE TABLE IF NOT EXISTS `state` (
 -- Structure de la table `type`
 --
 
+DROP TABLE IF EXISTS `type`;
 CREATE TABLE IF NOT EXISTS `type` (
   `type_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -146,10 +160,12 @@ CREATE TABLE IF NOT EXISTS `type` (
 -- Structure de la table `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(50) DEFAULT NULL,
   `lastName` varchar(50) DEFAULT NULL,
+  `birthDate` date NOT NULL,
   `address` varchar(250) DEFAULT NULL,
   `zipCode` varchar(5) DEFAULT NULL,
   `city` varchar(90) DEFAULT NULL,
@@ -169,6 +185,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Structure de la table `vehicule`
 --
 
+DROP TABLE IF EXISTS `vehicule`;
 CREATE TABLE IF NOT EXISTS `vehicule` (
   `vehicule_id` int(11) NOT NULL AUTO_INCREMENT,
   `numberPlate` varchar(10) DEFAULT NULL,
@@ -197,8 +214,8 @@ CREATE TABLE IF NOT EXISTS `vehicule` (
 -- Contraintes pour la table `location`
 --
 ALTER TABLE `location`
-  ADD CONSTRAINT `location_ibfk_1` FOREIGN KEY (`agency_id`) REFERENCES `agency` (`agency_id`),
-  ADD CONSTRAINT `location_ibfk_2` FOREIGN KEY (`agency_id_1`) REFERENCES `agency` (`agency_id`),
+  ADD CONSTRAINT `location_ibfk_1` FOREIGN KEY (`agency_start`) REFERENCES `agency` (`agency_id`),
+  ADD CONSTRAINT `location_ibfk_2` FOREIGN KEY (`agency_return`) REFERENCES `agency` (`agency_id`),
   ADD CONSTRAINT `location_ibfk_3` FOREIGN KEY (`plan_id`) REFERENCES `plan` (`plan_id`),
   ADD CONSTRAINT `location_ibfk_4` FOREIGN KEY (`vehicule_id`) REFERENCES `vehicule` (`vehicule_id`),
   ADD CONSTRAINT `location_ibfk_5` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
@@ -224,3 +241,7 @@ ALTER TABLE `vehicule`
   ADD CONSTRAINT `vehicule_ibfk_3` FOREIGN KEY (`type_id`) REFERENCES `type` (`type_id`),
   ADD CONSTRAINT `vehicule_ibfk_4` FOREIGN KEY (`modele_id`) REFERENCES `modele` (`modele_id`);
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
