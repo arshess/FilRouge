@@ -21,11 +21,11 @@ public function showAdminLocationToValidate(){
 		'
 	);
 	$this->db->from('location');
-	$this->db->join('vehicule', 'location.vehicule_id = vehicule.vehicule_id','left');
-	$this->db->join('user', 'location.user_id = user.user_id', 'left');
-	$this->db->join('plan', 'location.plan_id = plan.plan_id', 'left');
-	$this->db->join('modele', 'vehicule.modele_id = modele.modele_id', 'left');
-	$this->db->join('marque', 'modele.marque_id = marque.marque_id', 'left');
+	$this->db->join('vehicule', 'location.vehicule_id = vehicule.vehicule_id');
+	$this->db->join('user', 'location.user_id = user.user_id');
+	$this->db->join('plan', 'location.plan_id = plan.plan_id');
+	$this->db->join('modele', 'vehicule.modele_id = modele.modele_id');
+	$this->db->join('marque', 'modele.marque_id = marque.marque_id');
 	$this->db->order_by('location.startedDate', 'ASC');
    $result = $this->db->get();
    return $result->result();
@@ -34,8 +34,8 @@ public function showAdminLocationToValidate(){
 public function showAdminOneLocationToValidate($id){
 	//Requete pour afficher les locations à venir classées la première la plus proche
 	$this->db->select(
-		'location.location_id AS debutDate,
-		location.startedDate AS finDate,
+		'location.location_id AS idLoc,
+		location.startedDate AS debutDate,
 		location.returnDate AS retourDate,
 		vehicule.numberPlate AS immatriculation,
 		plan.designation AS plan, 
