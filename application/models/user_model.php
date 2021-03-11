@@ -12,7 +12,7 @@ class User_model extends CI_Model
 	}
 	public function addUser($firstname, $lastname, $email, $password)
 	{
-		$data = ['lastName' => $lastname, 'firstName' => $firstname, 'email' => $email, 'password' => $password];
+		$data = ['lastName' => $lastname, 'firstName' => $firstname, 'email' => $email, 'password' => $password,'admin'=>'0'];
 		return $this->db->insert('user', $data);
 	}
 }

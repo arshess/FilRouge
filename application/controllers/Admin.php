@@ -9,7 +9,7 @@ class Admin extends CI_Controller {
 //		$this->load->view('public/index');
 		$this->load->model('Admin_model');
 		$data['ARentList']= $this->Admin_model->showAdminLocationToValidate();
-		var_dump($data);
+
 		$this->load->view('template/header');
 		$this->load->view('admin/viewAllLocation', $data);
 		$this->load->view('template/footer');

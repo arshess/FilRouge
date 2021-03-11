@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <?= form_label('Mot de passe', '', ['for' => 'inputPassword', 'class' => 'mt-3 mb-1 fw-bold']); ?>
-        <?= form_input(['id' => 'inputPassword','type'=>'password', 'name' => 'inputPassword', 'class' => 'form-control mb-1', 'value' => set_value('inputPassword')]); ?>
+        <?= form_input(['id' => 'inputPassword','type'=>'password', 'name' => 'inputPassword', 'class' => 'form-control mb-1', 'value' => set_value('inputPassword'),'autocomplete'=>'current-password]']); ?>
         <?= form_error('inputPassword', '<div class="alert alert-warning">', '</div>');?>
     </div>
     <div class="row my-3">

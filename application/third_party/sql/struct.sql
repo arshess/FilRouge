@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(50) DEFAULT NULL,
   `lastName` varchar(50) DEFAULT NULL,
-  `birthDate` date NOT NULL,
+  `birthDate` date DEFAULT NULL,
   `address` varchar(250) DEFAULT NULL,
   `zipCode` varchar(5) DEFAULT NULL,
   `city` varchar(90) DEFAULT NULL,

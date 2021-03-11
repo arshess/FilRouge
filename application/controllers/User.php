@@ -31,7 +31,8 @@ class User extends CI_Controller
 				if (password_verify($this->input->post('inputPassword'), $user->password)) {
 					$this->load->view('/modals/connexionOK');
 					//set session et cookies
-					set_cookie('email', $email, 604800);
+					// set_cookie('email', $email, 604800);
+					$this->session->set_userdata('email',$email);
 				} else {
 					$this->load->view('modals/connexionIdInconnu');
 				}
@@ -73,11 +74,15 @@ class User extends CI_Controller
 	public function deconnexion()
 	{
 		$this->load->view('template/header');
-		if (get_cookie('email')) {
-			delete_cookie('email');
-			$this->load->view('modals/deconnexion');
-			$this->load->view('connexion');
-			$this->load->view('template/footer');
+		if ($this->session->userdata('email')) {
+			$this->session->unset_userdata('email');
+			$this->session->sess_destroy();
+			if (get_cookie('email')) {
+				delete_cookie('email');
+				$this->load->view('modals/deconnexion');
+				$this->load->view('connexion');
+				$this->load->view('template/footer');
+			}
 		}
 	}
 }

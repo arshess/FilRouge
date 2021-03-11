@@ -6,10 +6,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Votre compte a bien été créé. Pour pourrez le completer dans votre <a href="<?=base_url('User/showProfil')?>">profil</a> afin d'effectuer une location </p>
+        <p>Votre compte a bien été créé. Pour pourrez le completer dans votre <a href="<?=base_url('User/showProfil')?>">profil</a> afin d'effectuer une location.</p>
+        <p> Merci de vous connecter.</p>
       </div>
       <div class="modal-footer">
-        <a href="<?=base_url()?>" class="btn btn-primary">Fermer</a>
+        <a href="<?=base_url('User/connexion')?>" class="btn btn-primary">Fermer</a>
       </div>
     </div>
   </div>
