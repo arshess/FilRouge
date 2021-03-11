@@ -27,6 +27,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<li class="nav-item">
 						<a class="nav-link ms-4" href="#">Nos véhicules</a>
 					</li>
+					<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('Admin/showProfil') ?>" tabindex="-1" aria-disabled="true">Gestion Profils</a>
+					</li>
+					<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('Admin/showLocation') ?>" tabindex="-1" aria-disabled="true">Gestion Locations</a>
+					</li>
+					<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('Admin/showVehicle') ?>" tabindex="-1" aria-disabled="true">Gestion Véhicules</a>
+					</li>
+
 					<?php if (get_cookie('email')) { ?>
 						<li class="nav-item"><a class="nav-link" href="<?= base_url('User/deconnexion') ?>" tabindex="-1" aria-disabled="true">Deconnexion</a></li>
 					<?php } else { ?>

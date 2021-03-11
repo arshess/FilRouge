@@ -2,13 +2,13 @@
    <div class="row justify-content-center my-2">
       <table class="justify-content-center">
          <tr>
-            <td>Immatriculation</td>
-            <td>Prenom&nbsp;Nom</td>
-            <td>Marque</td>
-            <td>Modele</td>
-            <td>Date début</td>
-            <td>Date fin</td>
-            <td>Choisir</td>
+            <th>Immatriculation</th>
+            <th>Prenom&nbsp;Nom</th>
+            <th>Marque</th>
+            <th>Modele</th>
+            <th>Date début</th>
+            <th>Date fin</th>
+            <th>Choix</th>
          </tr>
          <?php
          foreach ($ARentList as $datum) {
