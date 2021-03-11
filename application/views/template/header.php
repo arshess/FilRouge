@@ -23,14 +23,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<div class="navbar-nav container row">
-					<a class="nav-link col-2 ms-4" href="#">Nos véhicules</a>
+				<ul class="navbar-nav me-auto ">
+					<li class="nav-item">
+						<a class="nav-link ms-4" href="#">Nos véhicules</a>
+					</li>
 					<?php if (get_cookie('email')) { ?>
-						<a class="nav-link col-2 offset-7" href="<?= base_url('User/deconnexion') ?>" tabindex="-1" aria-disabled="true">Deconnexion</a>
+						<li class="nav-item"><a class="nav-link" href="<?= base_url('User/deconnexion') ?>" tabindex="-1" aria-disabled="true">Deconnexion</a></li>
 					<?php } else { ?>
-						<a class="nav-link col-2 offset-7" href="<?= base_url('User/connexion') ?>" tabindex="-1" aria-disabled="true">Connexion</a>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Connexion / Inscription
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="<?= base_url('User/connexion') ?>" tabindex="-1" aria-disabled="true">Connexion</a></li>
+
+								<li><a class="dropdown-item" href="<?= base_url('User/inscription') ?>" tabindex="-1" aria-disabled="true">Inscription</a></li>
+							</ul>
+						</li>
 					<?php } ?>
-				</div>
+				</ul>
 			</div>
 		</div>
 	</nav>

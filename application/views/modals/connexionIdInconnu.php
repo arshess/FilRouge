@@ -6,7 +6,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Il semblerait que ces identifiants soient inconnus. veuillez vérifier ou vous inscrire si ce n'est pas fait</p>
+        <p>Il semblerait que ces identifiants soient inconnus. veuillez vérifier ou <a href="<?=base_url('User/inscription')?>">vous inscrire</a>  si ce n'est pas fait</p>
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>

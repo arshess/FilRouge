@@ -1,3 +1,4 @@
-<div class="container mt-4 p-3 bg-light">
+<div class="container-fluid container_user m-0">
+
     
 </div>
