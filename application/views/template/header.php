@@ -31,8 +31,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<li class="nav-item">
 						<a class="nav-link ms-4" href="<?=base_url('User/showProfil')?>">Profil</a>
 					</li>
-						<li class="nav-item"><a class="nav-link" href="<?= base_url('User/deconnexion') ?>" tabindex="-1" aria-disabled="true">Deconnexion</a></li>
-					<?php } else { ?>
+					<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('Admin/showProfil') ?>" tabindex="-1" aria-disabled="true">Gestion Profils</a>
+					</li>
+					<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('Admin/showLocation') ?>" tabindex="-1" aria-disabled="true">Gestion Locations</a>
+					</li>
+					<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('Admin/showVehicle') ?>" tabindex="-1" aria-disabled="true">Gestion Véhicules</a>
+					</li>
+
+
+
+					<?php  } else { ?>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Connexion / Inscription
