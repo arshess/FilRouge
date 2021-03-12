@@ -61,11 +61,15 @@ class User_model extends CI_Model
         return $this->db->get();
 		
     }
-	public function getVehicule($query,$type){
+	
+	public function getVehicule($query = null ,$type = null,$limit,$page){
+		$limit = 10;
+		$param_offset = 100;
+		$params = array_slice($this->uri->rsegment_array(), $param_offset);
 		$this->db->select('
 		marque.name as name,
 		modele.name as modele,
-		vehicule.doors,fuelType,mileage,horses,productedYear
+		vehicule.doors,fuelType,mileage,horses,productedYear,picture
 		 ');
 		$this->db->from('vehicule');
 		$this->db->join('modele', 'modele.modele_id = vehicule.modele_id');
@@ -76,30 +80,21 @@ class User_model extends CI_Model
 				$this->db->where('modele.modele_id',$query);
 				$this->db->where('type.type_id',$type);
 		}
+		$this->db->limit($limit,$page);
 		$this->db->order_by('marque.name','ASC');
-		return $this->db->get();
+		$vehicule = $this->db->get();
+		if ($vehicule->num_rows() > 0) {
+            foreach ($vehicule->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
 	}
-	// public function getVehiculeDispo($date,$query,$type){
-	// 	$dispo = 4;
-	// 	$date = '';
-	// 	$this->db->select('*');
-	// 	$this->db->from('vehicule');
-	// 	$this->db->join('modele', 'modele.modele_id = vehicule.modele_id');
-	// 	$this->db->join('marque','marque.marque_id = modele.marque_id');
-	// 	$this->db->join('type','type.type_id = vehicule.type_id');
-	// 	$this->db->join('location','location.vehicule_id = vehicule.vehicule_id');
-	// 	$this->db->join('disponibility','disponibility.dispo_id = vehicule.dispo_id');
-	
-
-	// 	if($query != ''){
-	// 			$this->db->where('vehicule.type_id',$type);
-	// 			$this->db->where('marque.marque_id',$query);
-	// 			$this->db->where('disponibility.dispo_id',$dispo);
-	// 			$this->db->where('location.expectedReturnDate >',$date);	
-	// 	}
-	// 	$this->db->order_by('marque.name','ASC');
-	// 	return $this->db->get();
-	// }
-	
-	
+	public function compteRow(){
+		
+		$data =$this->db->count_all('vehicule');
+		return $data;
+		
+	}	
 }

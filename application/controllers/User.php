@@ -11,9 +11,17 @@ class User extends CI_Controller
 	// 	$this->load->view('reservation');
 	// 	$this->load->view('template/footer');
 	// }
-	public function index()
+	public function index($page = 0)
 	{
+
+		$this->load->library('pagination');
+		$config['base_url'] = 'http://localhost/FILROUGE/index.php/User/index';
+		$config['per_page'] = 10;
+		$config['num_links'] = 10;
+		$config['total_rows'] = $this->user_model->compteRow();
+		$this->pagination->initialize($config);
 		$data['types'] = $this->user_model->getTypes();
+		$data['vehicule'] = $this->user_model->getVehicule($query = null, $type = null, $config['per_page'], $page);
 		// $data['modeles'] = $this->user_model->getModeles();
 		// $data['marques'] = $this->user_model->getMarques();
 		$this->load->view('template/header');
@@ -55,15 +63,12 @@ class User extends CI_Controller
 		}
 		$this->load->view('template/footer');
 	}
-
-
 	public function inscription()
 	{
 		$this->load->model('User_model', '', true);
 		$this->load->library('Form_validation');
 		$this->load->helper('form');
 		$this->load->view('template/header');
-		//set rules
 		$this->form_validation->set_rules('inputFirstname', 'prénom', 'trim|ucfirst|htmlentities|required');
 		$this->form_validation->set_rules('inputLastname', 'nom de famille', 'trim|ucfirst|htmlentities|required');
 		$this->form_validation->set_rules('inputEmail', 'email', 'trim|htmlentities|valid_email|is_unique[user.email]|required');
@@ -83,8 +88,6 @@ class User extends CI_Controller
 		}
 		$this->load->view('template/footer');
 	}
-
-
 	public function deconnexion()
 	{
 		$this->load->view('template/header');
@@ -96,8 +99,6 @@ class User extends CI_Controller
 			$this->load->view('template/footer');
 		}
 	}
-
-
 	public function showProfil()
 	{
 		$this->load->model('User_model', '', true);
@@ -116,8 +117,6 @@ class User extends CI_Controller
 		}
 		$this->load->view('template/footer');
 	}
-
-
 	public function updateProfil()
 	{
 		$this->load->model('User_model', '', true);
@@ -154,8 +153,6 @@ class User extends CI_Controller
 	}
 	public function fetch()
 	{
-		$query = '';
-		$type = '';
 		$this->load->model('user_model');
 		if ($this->input->post('query')) {
 			$query = $this->input->post('query');
@@ -166,7 +163,6 @@ class User extends CI_Controller
 	}
 	public function fetchMarque()
 	{
-		$query = '';
 		$this->load->model('user_model');
 		if ($this->input->post('query')) {
 			$query = $this->input->post('query');
@@ -176,14 +172,17 @@ class User extends CI_Controller
 	}
 	public function getVehicule()
 	{
-		$query = '';
+		
 		$this->load->model('user_model');
 		if ($this->input->post('query')) {
 			$query = $this->input->post('query');
 			$type = $this->input->post('type');
+			$limit = $this->input->post('limit');
+			$page = $this->input->post('page');
 		}
-		$data = $this->user_model->getVehicule($query, $type);
-		echo json_encode($data->result());
+		$data = $this->user_model->getVehicule($query, $type,$limit, $page);
+		echo json_encode($data);
+
 	}
 	// public function getVehiculeDispo()
 	// {
@@ -200,6 +199,7 @@ class User extends CI_Controller
 	// 	$data = $this->user_model->getVehicule($date, $query, $type);
 	// 	echo json_encode($data->result());
 	// }
+
 	private function censure($string)
 	{
 		$length = strlen($string);
