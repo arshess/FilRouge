@@ -1,7 +1,6 @@
 $(document).ready(function() {
     function load_modele(query, type) {
         var type = $('#type').val();
-
         $.ajax({
             url: "http://localhost/FilRouge/index.php/user/fetch",
             method: "POST",
@@ -67,6 +66,7 @@ $(document).ready(function() {
     });
 
     function loadVehicule(query, type) {
+
         var type = $('#type').val();
         $.ajax({
             url: "http://localhost/FilRouge/index.php/user/getVehicule",
@@ -77,7 +77,7 @@ $(document).ready(function() {
             },
             dataType: 'json',
             success: function(data) {
-                $('#getVehicule').html('<tr><th>name</th><th>modele</th><th>doors</th><th>fuelType</th><th>mileage</th><th>horses</th><th>producted Year</th><th>picture</th></tr>'),
+                $('#getVehicule').html('<tr  style="text-align: center;"><th>Marque</th><th>Modèle</th><th>Nombre de portes</th><th>Carburant</th><th>Kilométrage</th><th>Puissance DIN</th><th>Mise en circulation</th><th>Image</th></tr>'),
                     data.map(element => {
                         console.log(element)
                         var name = element.name;
@@ -89,7 +89,7 @@ $(document).ready(function() {
                         var productedYear = element.productedYear;
                         var picture = element.picture;
                         $('#getVehicule').append(
-                            `<tr>
+                            `<tr  style="text-align: center;">
                         <td>${name}</td>
                         <td>${modele}</td>
                         <td>${doors}</td>
@@ -101,10 +101,8 @@ $(document).ready(function() {
                         </tr> 
                         `
                         )
-
                     })
             }
-
         })
     }
     $('#result').change(function() {
@@ -112,62 +110,10 @@ $(document).ready(function() {
         var search = $(this).val();
         if (search != '') {
             loadVehicule(search);
+            document.getElementById('vehiculePagination').classList.add('d-none')
         } else {
             loadVehicule();
+            document.getElementById('vehiculePagination').classList.remove('d-none')
         }
     })
-
-    // function loadVehiculeDispo(date, query, type) {
-    //     var type = $('#type').val();
-    //     var query = $('#resultMarque').val();
-
-    //     $.ajax({
-    //         url: "http://localhost/FilRouge/index.php/user/getVehiculeDispo",
-    //         method: 'POST',
-    //         data: {
-    //             date: date,
-    //             query: query,
-    //             type: type
-    //         },
-    //         dataType: 'json',
-    //         success: function(data) {
-    //             $('#getVehicule').html('<tr><th>name</th><th>modele</th><th>doors</th><th>fuelType</th><th>mileage</th><th>horses</th><th>producted Year</th><th>picture</th></tr>'),
-    //                 data.map(element => {
-    //                     console.log(element)
-    //                     var name = element.name;
-    //                     var modele = element.modele;
-    //                     var doors = element.doors;
-    //                     var fuelType = element.fuelType;
-    //                     var mileage = element.mileage;
-    //                     var horses = element.horses;
-    //                     var productedYear = element.productedYear;
-    //                     var picture = element.picture;
-    //                     $('#getVehicule').append(
-    //                         `<tr>
-    //                     <td>${name}</td>
-    //                     <td>${modele}</td>
-    //                     <td>${doors}</td>
-    //                     <td>${fuelType}</td>
-    //                     <td>${mileage}</td>
-    //                     <td>${horses}</td>
-    //                     <td>${productedYear}</td>
-    //                     <td>${picture}</td>
-    //                     </tr> 
-    //                     `
-    //                     )
-
-    //                 })
-    //         }
-
-    //     })
-    // }
-    // $('#dateDepart,#hourDepart').change(function() {
-    //     $('#getVehiculeDispo').empty();
-    //     var search = $(this).val();
-    //     if (search != '') {
-    //         loadVehiculeDispo(search);
-    //     } else {
-    //         loadVehiculeDispo();
-    //     }
-    // })
 });
