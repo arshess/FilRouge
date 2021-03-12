@@ -12,6 +12,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 	<link rel="stylesheet" href="<?= base_url() ?>public/style/style.css">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body class="">
@@ -39,6 +40,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<li class="nav-item">
 					<a class="nav-link" href="<?= base_url('Admin/showVehicle') ?>" tabindex="-1" aria-disabled="true">Gestion Véhicules</a>
 					</li>
+					<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('User/deconnexion') ?>" tabindex="-1" aria-disabled="true">Déconnexion</a>
+					</li>
+					
 
 
 
