@@ -130,25 +130,25 @@ class User extends CI_Controller
 			$this->form_validation->set_rules('inputFirstname', 'prénom', 'ucfirst|trim|htmlentities|required');
 			$this->form_validation->set_rules('inputAddress', 'inputbirthDate', 'trim|htmlentities|required');
 			$this->form_validation->set_rules('inputAddress', 'adresse', 'trim|htmlentities|required');
-			$this->form_validation->set_rules('inputZipcode', 'code postal', 'trim|htmlentities|required');
+			$this->form_validation->set_rules('inputZipcode', 'code postal', array('trim', 'htmlentities', 'regex_match[/^(([0-9]{2}|(2A|2a|2B|2b))([0-9]){3})$/]', 'alpha_numeric', 'required'));
 			$this->form_validation->set_rules('inputCity', 'ville', 'ucfirst|trim|htmlentities|required');
-			$this->form_validation->set_rules('inputIdCard', 'date d\'identité', 'trim|htmlentities|required');
-			$this->form_validation->set_rules('inputDriverLicense', 'permis de conduire', 'trim|htmlentities|required');
-			$this->form_validation->set_rules('inputEmail', 'email', 'trim|htmlentities|required');
+			$this->form_validation->set_rules('inputIdCard', 'date d\'identité', 'trim|htmlentities|alpha_numeric|max_length[15]|required');
+			$this->form_validation->set_rules('inputDriverLicense', 'permis de conduire', array('trim', 'htmlentities', 'max_length[19]', 'alpha_numeric', 'regex_match[/^([a-zA-Z0-9]{1,15})([0-9]{4})$/]', 'required'));
+			$this->form_validation->set_rules('inputEmail', 'email', 'trim|htmlentities|valid_email|required');
 			if ($this->form_validation->run() == FALSE) {
 				$data = $this->User_model->getUser($this->session->userdata('email'));
 				if ($data[0]->avatar == null) {
 					$data[0]->avatar = 'defaut.png';
 				}
-				$data[0]->IdCard = $this->censure($data[0]->IdCard);
-				$data[0]->driverLicense = $this->censure($data[0]->driverLicense);
-
 				$this->load->view('updateprofil', $data[0]);
 			} else {
-				$this->load->view('modals/connexionnecessaire');
-				$this->load->view('connexion');
+				if($this->User_model->updateProfil()){
+					$this->load->view('modals/updateOK');
+				}
 			}
 		} else {
+			$this->load->view('modals/connexionnecessaire');
+			$this->load->view('connexion');
 		}
 		$this->load->view('template/footer');
 	}

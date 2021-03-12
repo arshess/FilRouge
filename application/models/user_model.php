@@ -15,6 +15,11 @@ class User_model extends CI_Model
 		$data = ['lastName' => $lastname, 'firstName' => $firstname, 'email' => $email, 'password' => $password,'admin'=>'0'];
 		return $this->db->insert('user', $data);
 	}
+	public function updateProfil(){
+		return true;
+	}
+
+
 	public function getTypes(){
 		$query = $this->db->get('type');
         return $query->result();
