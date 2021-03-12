@@ -61,8 +61,8 @@ class User_model extends CI_Model
         return $this->db->get();
 		
     }
-	
-	public function getVehicule($query = null ,$type = null,$limit,$page){
+	//j'ai rajouté =null sur $limit et $page pour éviter un message d'erreur. a toi de voir
+	public function getVehicule($query = null ,$type = null,$limit=null,$page=null){
 		$limit = 10;
 		$param_offset = 100;
 		$params = array_slice($this->uri->rsegment_array(), $param_offset);
