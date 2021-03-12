@@ -6,10 +6,11 @@
             <a class="nav-link col-3" href="#">CGU/CGV</a>
             <a class="nav-link col-3" href="#">POLITIQUE DE COOKIES</a>
         </div>
+
     </div>
 </nav>
-
-<!-- <script src="<?= base_url() ?>public/script.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="<?= base_url() ?>assets/script.js"></script>
 </body>
 
 </html>
