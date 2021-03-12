@@ -53,7 +53,7 @@ class User_model extends CI_Model {
 		$this->db->select('
 		marque.name as name,
 		modele.name as modele,
-		vehicule.doors,fuelType,mileage,horses,productedYear
+		vehicule.doors,fuelType,mileage,horses,productedYear,picture
 		 ');
 		$this->db->from('vehicule');
 		$this->db->join('modele', 'modele.modele_id = vehicule.modele_id');
@@ -68,8 +68,11 @@ class User_model extends CI_Model {
 		return $this->db->get();
 	}
 	// public function getVehiculeDispo($date,$query,$type){
-	// 	$dispo = 4;
-	// 	$date = '';
+	// 	$revision =2;
+	// 	$accidentee = 3;
+	// 	$date='2022-12-03 14:00:00';
+	// 	$query=2;
+	// 	$type=3;
 	// 	$this->db->select('*');
 	// 	$this->db->from('vehicule');
 	// 	$this->db->join('modele', 'modele.modele_id = vehicule.modele_id');
@@ -82,11 +85,12 @@ class User_model extends CI_Model {
 	// 	if($query != ''){
 	// 			$this->db->where('vehicule.type_id',$type);
 	// 			$this->db->where('marque.marque_id',$query);
-	// 			$this->db->where('disponibility.dispo_id',$dispo);
-	// 			$this->db->where('location.expectedReturnDate >',$date);	
+	// 			$this->db->where('disponibility.dispo_id !=',$revision);
+	// 			$this->db->where('disponibility.dispo_id !=',$accidentee);
+	// 			$this->db->where('location.expectedReturnDate <',$date);	
 	// 	}
 	// 	$this->db->order_by('marque.name','ASC');
-	// 	return $this->db->get();
+	// 	 var_dump( $this->db->get_compiled_select());
 	// }
 	
 	

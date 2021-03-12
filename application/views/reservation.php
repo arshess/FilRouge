@@ -19,34 +19,7 @@
         <div class=" row col-4"><select class="form-select" id="result" name="modele">
                 <option>Modeles</option>
             </select></div>
-        <div class="row col-12 mt-3">
-            <p class="col-md-6">
-
-                <?= form_input(['type' => 'date', 'value' => set_value('date'), 'id' => 'dateDepart', 'class' => 'form-control', 'placeholder' => 'Date', 'name' => 'dateDepart']) ?>
-
-                <?= form_error('date') ?>
-            </p>
-
-            <p class="col-md-6">
-                <?= form_input(['type' => 'time', 'value' => set_value('hour'), 'id' => 'hourDepart', 'class' => 'form-control', 'placeholder' => 'Heure', 'name' => 'hourDepart']) ?>
-
-                <?= form_error('hour') ?>
-            </p>
-        </div>
-        <div class="row col-12 mt-3">
-            <p class="col-md-6">
-
-                <?= form_input(['type' => 'date', 'value' => set_value('date'), 'id' => 'date', 'class' => 'form-control', 'placeholder' => 'Date', 'name' => 'dateRetour']) ?>
-
-                <?= form_error('date') ?>
-            </p>
-
-            <p class="col-md-6">
-                <?= form_input(['type' => 'time', 'value' => set_value('hour'), 'id' => 'hour', 'class' => 'form-control', 'placeholder' => 'Heure', 'name' => 'hourRetour']) ?>
-
-                <?= form_error('hour') ?>
-            </p>
-        </div>
+        
         <?= form_close() ?>
         <div class="row col-12">
             <table class="table mt-5" id="getVehicule" name="getVehicule">

@@ -119,7 +119,7 @@ $(document).ready(function() {
 
     // function loadVehiculeDispo(date, query, type) {
     //     var type = $('#type').val();
-    //     var query = $('#marque').val();
+    //     var query = $('#resultMarque').val();
 
     //     $.ajax({
     //         url: "http://localhost/FilRouge/index.php/user/getVehiculeDispo",

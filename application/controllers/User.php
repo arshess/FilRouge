@@ -22,8 +22,6 @@ class User extends CI_Controller
 	}
 	public function fetch()
 	{
-		$query = '';
-		$type = '';
 		$this->load->model('user_model');
 		if ($this->input->post('query')) {
 			$query = $this->input->post('query');
@@ -34,7 +32,6 @@ class User extends CI_Controller
 	}
 	public function fetchMarque()
 	{
-		$query = '';
 		$this->load->model('user_model');
 		if ($this->input->post('query')) {
 			$query = $this->input->post('query');
@@ -44,7 +41,6 @@ class User extends CI_Controller
 	}
 	public function getVehicule()
 	{
-		$query = '';
 		$this->load->model('user_model');
 		if ($this->input->post('query')) {
 			$query = $this->input->post('query');
@@ -55,10 +51,9 @@ class User extends CI_Controller
 	}
 	// public function getVehiculeDispo()
 	// {
-		
-	// 	$date = '';
-	// 	$query = '';
-	// 	$type = '';
+	// 	$date='2022-12-03 14:00:00';
+	// 	$query=2;
+	// 	$type=3;
 	// 	$this->load->model('user_model');
 	// 	if ($this->input->post('query')) {
 	// 		$query = $this->input->post('query');
