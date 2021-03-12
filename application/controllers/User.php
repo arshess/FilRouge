@@ -104,11 +104,13 @@ class User extends CI_Controller
 		$this->load->view('template/header');
 		if ($this->session->userdata('email')) {
 			$data = $this->User_model->getUser($this->session->userdata('email'));
-			if($data[0]->avatar==null){
+			if ($data[0]->avatar == null) {
 				$data[0]->avatar = 'defaut.png';
+				$data[0]->IdCard = $this->censure($data[0]->IdCard);
+				$data[0]->driverLicense = $this->censure($data[0]->driverLicense);
 			}
 			$this->load->view('profil', $data[0]);
-		} else {			
+		} else {
 			$this->load->view('modals/connexionnecessaire');
 			$this->load->view('connexion');
 		}
@@ -118,6 +120,37 @@ class User extends CI_Controller
 
 	public function updateProfil()
 	{
+		$this->load->model('User_model', '', true);
+		$this->load->library('Form_validation');
+		$this->load->helper('form');
+		$this->load->view('template/header');
+		if ($this->session->userdata('email')) {
+			$this->form_validation->set_rules('inputAvatar', 'avatar', 'trim|htmlentities');
+			$this->form_validation->set_rules('inputLastname', 'nom de famille', 'ucfirst|trim|htmlentities|required');
+			$this->form_validation->set_rules('inputFirstname', 'prénom', 'ucfirst|trim|htmlentities|required');
+			$this->form_validation->set_rules('inputAddress', 'inputbirthDate', 'trim|htmlentities|required');
+			$this->form_validation->set_rules('inputAddress', 'adresse', 'trim|htmlentities|required');
+			$this->form_validation->set_rules('inputZipcode', 'code postal', 'trim|htmlentities|required');
+			$this->form_validation->set_rules('inputCity', 'ville', 'ucfirst|trim|htmlentities|required');
+			$this->form_validation->set_rules('inputIdCard', 'date d\'identité', 'trim|htmlentities|required');
+			$this->form_validation->set_rules('inputDriverLicense', 'permis de conduire', 'trim|htmlentities|required');
+			$this->form_validation->set_rules('inputEmail', 'email', 'trim|htmlentities|required');
+			if ($this->form_validation->run() == FALSE) {
+				$data = $this->User_model->getUser($this->session->userdata('email'));
+				if ($data[0]->avatar == null) {
+					$data[0]->avatar = 'defaut.png';
+				}
+				$data[0]->IdCard = $this->censure($data[0]->IdCard);
+				$data[0]->driverLicense = $this->censure($data[0]->driverLicense);
+
+				$this->load->view('updateprofil', $data[0]);
+			} else {
+				$this->load->view('modals/connexionnecessaire');
+				$this->load->view('connexion');
+			}
+		} else {
+		}
+		$this->load->view('template/footer');
 	}
 	public function fetch()
 	{
@@ -128,7 +161,7 @@ class User extends CI_Controller
 			$query = $this->input->post('query');
 			$type = $this->input->post('type');
 		}
-		$data = $this->user_model->fetchModele($query,$type);
+		$data = $this->user_model->fetchModele($query, $type);
 		echo json_encode($data->result());
 	}
 	public function fetchMarque()
@@ -149,12 +182,12 @@ class User extends CI_Controller
 			$query = $this->input->post('query');
 			$type = $this->input->post('type');
 		}
-		$data = $this->user_model->getVehicule($query,$type);
+		$data = $this->user_model->getVehicule($query, $type);
 		echo json_encode($data->result());
 	}
 	// public function getVehiculeDispo()
 	// {
-		
+
 	// 	$date = '';
 	// 	$query = '';
 	// 	$type = '';
@@ -167,5 +200,17 @@ class User extends CI_Controller
 	// 	$data = $this->user_model->getVehicule($date, $query, $type);
 	// 	echo json_encode($data->result());
 	// }
-	
+	private function censure($string)
+	{
+		$length = strlen($string);
+		$result = '';
+		for ($i = 0; $i < strlen($string); $i++) {
+			if ($i < 3 || $length - $i <= 4) {
+				$result .= substr($string, $i, 1);
+			} else {
+				$result .= '*';
+			}
+		}
+		return $result;
+	}
 }
