@@ -39,7 +39,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<a class="nav-link" href="<?= base_url('Admin/showLocation') ?>" tabindex="-1" aria-disabled="true">Gestion Locations</a>
 					</li>
 					<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('Admin/showVehicle') ?>" tabindex="-1" aria-disabled="true">Gestion Véhicules</a>
+					<a class="nav-link" href="<?= base_url('Vehicle/index') ?>" tabindex="-1" aria-disabled="true">Gestion Véhicules</a>
 					</li>
 					<li class="nav-item">
 					<a class="nav-link" href="<?= base_url('User/deconnexion') ?>" tabindex="-1" aria-disabled="true">Déconnexion</a>

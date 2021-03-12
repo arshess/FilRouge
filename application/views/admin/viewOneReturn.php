@@ -5,7 +5,7 @@
    setlocale(LC_ALL, 'fr-FR');
    ?>
 
-   <?= form_open('Admin/updateLocation'); ?>
+   <?= form_open('Admin/updateReturn'); ?>
    <table>
       <?php
       foreach ($ARentOne as $datum) {
@@ -44,41 +44,50 @@
             
             </td>
             </tr>
+            <tr>
+         <td class="text-end">Kilométrage départ</td>
+            <td colspan="2">
+               <?= form_input(['type' => 'text', 'id' => 'startmileage', 'class' => 'form-control text-center', 'value' => number_format($datum->startmileage,0,'.',' '), 'name' => 'startmileage', 'readonly' => '']); ?>
+            </td>
+         </tr>
          <tr>
             
          </tr>
          <tr>
-         <td class="text-end">Date de départ prévu</td>
-            <td>
-               <?= form_input(['type' => 'date', 'id' => 'beginDate', 'class' => 'form-control text-center', 'name' => 'beginDate', 'value' => strftime('%Y-%m-%e', strtotime($datum->debutDate))]); ?>
-            </td>
-            <td>
-               <?= form_input(['type' => 'time', 'id' => 'beginHour', 'class' => 'form-control text-center', 'name' => 'beginHour', 'value' => strftime('%R', strtotime($datum->debutDate))]); ?>
-            </td>
-         </tr>
          <?php
+         $retourDate1 = explode(' ',$datum->debutDate);
          $retourDate2 = explode(' ',$datum->retourDate);
+         $last7days = date('Y-m-d',mktime(0, 0, 0, date("m"), date("d")-7,   date("Y")));
+         //var_dump($last7days);
          // var_dump($datum->retourDate);
-         // die();
+          //die();
          ?>
-         <tr>
-            <td class="text-end">Date de retour prévu</td>
+         <td class="text-end">Date de départ</td>
             <td>
-               <?= form_input(['type' => 'date', 'id' => 'endDate', 'class' => 'form-control text-center', 'name' => 'endDate', 'value' => $retourDate2[0]]); ?>
+               <?= form_input(['type' => 'date', 'id' => 'beginDate', 'class' => 'form-control text-center', 'name' => 'beginDate', 'value' => $retourDate1[0], 'readonly' => '']); ?>
             </td>
             <td>
-               <?= form_input(['type' => 'time', 'id' => 'endHour', 'class' => 'form-control text-center', 'name' => 'endHour', 'value' => strftime('%R', strtotime($datum->retourDate))]); ?>
+               <?= form_input(['type' => 'time', 'id' => 'beginHour', 'class' => 'form-control text-center', 'name' => 'beginHour', 'value' => $retourDate1[1], 'readonly' => '']); ?>
             </td>
          </tr>
          <tr>
-         <td class="text-end">Kilométrage</td>
+            <td class="text-end">Date de retour réel</td>
+            <td>
+               <?= form_input(['type' => 'date', 'id' => 'endDate', 'class' => 'form-control text-center', 'name' => 'endDate', 'min' => $last7days, 'value' => Date('Y-m-d')]); ?>
+            </td>
+            <td>
+               <?= form_input(['type' => 'time', 'id' => 'endHour', 'class' => 'form-control text-center', 'name' => 'endHour', 'value' => Date('h:i')]); ?>
+            </td>
+         </tr>
+         <tr>
+         <td class="text-end">Kilométrage retour</td>
             <td colspan="2">
-               <?= form_input(['type' => 'text', 'id' => 'startmileage', 'class' => 'form-control text-center', 'name' => 'startmileage']); ?>
+               <?= form_input(['type' => 'text', 'id' => 'returnmileage', 'class' => 'form-control text-center', 'name' => 'returnmileage']); ?>
             </td>
          </tr>
          <tr>
             <td class="text-start">
-               <a href="<?= base_url() ?>Admin/showAdminLocation" class="btn btn-warning" class="btn btn-warning">Retour</a>
+               <a href="<?= base_url() ?>Admin/showAdminReturn" class="btn btn-warning" class="btn btn-warning">Retour</a>
             </td>
 
             <td class="text-end">

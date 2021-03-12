@@ -69,9 +69,9 @@ class Admin extends CI_Controller
 
 	public function updateReturn()
 	{
-		$data['mileageStart'] = $this->input->post('returnmileage');
+		$data['mileageReturn'] = $this->input->post('returnmileage');
 		$data['location_id'] = $this->input->post('idLoc');
-		$data['expectedReturnDate'] = $this->input->post('endDate') . ' ' . $this->input->post('endHour');
+		$data['returnDate'] = $this->input->post('endDate') . ' ' . $this->input->post('endHour');
 		$data['ended'] = 1;
 
 		$data['vehicule_id'] = $this->input->post('idVehicule');
@@ -79,6 +79,28 @@ class Admin extends CI_Controller
 
 		$this->load->model('Admin_model');
 		$this->Admin_model->updateAdminRet($data);
-		$this->showAdminLocation();
+		$this->showAdminReturn();
 	}
+
+	public function showAdminReturn()
+	{
+		$this->load->model('Admin_model');
+		$data['ARentList'] = $this->Admin_model->showAdminReturnToValidate();
+		$this->load->view('template/header');
+		$this->load->view('admin/viewAllReturns', $data);
+		$this->load->view('template/footer');
+	}
+
+	public function showAdminOneReturn($id)
+	{
+		$this->load->model('Admin_model');
+		$data['ARentOne'] = $this->Admin_model->showAdminOneReturnToValidate($id);
+		$this->load->view('template/header');
+		$this->load->view('admin/viewOneReturn', $data);
+		$this->load->view('template/footer');
+	}
+
+
+
+
 }
