@@ -9,7 +9,7 @@
         <p>Pour acceder à cette page il faut être connecter</p>
       </div>
       <div class="modal-footer">
-        <a href="User/connexion" class="btn btn-secondary" >Se connecter</a>
+        <a href="<?=base_url('User/connexion')?>" class="btn btn-secondary" >Se connecter</a>
       </div>
     </div>
   </div>

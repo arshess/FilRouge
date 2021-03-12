@@ -29,7 +29,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					</li>
 					<?php if ($this->session->userdata('email')) { ?>
 						<li class="nav-item">
-						<a class="nav-link ms-4" href="User/showprofil">Profil</a>
+						<a class="nav-link ms-4" href="<?=base_url('User/showProfil')?>">Profil</a>
 					</li>
 						<li class="nav-item"><a class="nav-link" href="<?= base_url('User/deconnexion') ?>" tabindex="-1" aria-disabled="true">Deconnexion</a></li>
 					<?php } else { ?>

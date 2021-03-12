@@ -32,10 +32,13 @@ class User extends CI_Controller
 					$this->load->view('/modals/connexionOK');
 					//set session et cookies
 					// set_cookie('email', $email, 604800);
-					$this->session->set_userdata('email',$email);
+					$this->session->set_userdata('email', $email);
 				} else {
 					$this->load->view('modals/connexionIdInconnu');
 				}
+			}
+			if (sizeof($users) == 0) {
+				$this->load->view('modals/connexionIdInconnu');
 			}
 			$this->load->view('connexion');
 		}
@@ -77,12 +80,32 @@ class User extends CI_Controller
 		if ($this->session->userdata('email')) {
 			$this->session->unset_userdata('email');
 			$this->session->sess_destroy();
-			if (get_cookie('email')) {
-				delete_cookie('email');
-				$this->load->view('modals/deconnexion');
-				$this->load->view('connexion');
-				$this->load->view('template/footer');
-			}
+			$this->load->view('modals/deconnexion');
+			$this->load->view('connexion');
+			$this->load->view('template/footer');
 		}
+	}
+
+
+	public function showProfil()
+	{
+		$this->load->model('User_model', '', true);
+		$this->load->view('template/header');
+		if ($this->session->userdata('email')) {
+			$data = $this->User_model->getUser($this->session->userdata('email'));
+			if($data[0]->avatar==null){
+				$data[0]->avatar = 'defaut.png';
+			}
+			$this->load->view('profil', $data[0]);
+		} else {			
+			$this->load->view('modals/connexionnecessaire');
+			$this->load->view('connexion');
+		}
+		$this->load->view('template/footer');
+	}
+
+
+	public function updateProfil()
+	{
 	}
 }
