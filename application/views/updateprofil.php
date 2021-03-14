@@ -1,6 +1,6 @@
 <div class="container-fluid container_user py-3">
     <div class="container row bg-light ms-auto me-auto rounded my-3">
-        <?= form_open('User/updateProfil', ['class' => 'form-group p-3', 'id' => 'formConnexion']); ?>
+        <?= form_open_multipart('User/updateProfil', ['class' => 'form-group p-3', 'id' => 'formConnexion']); ?>
         <div class="row">
             <div class="col-lg-6 my-2 d-flex align-items-end">
                 <img id="profil-avatar" src="<?= base_url() . 'public/images/avatar/' . $avatar ?>" alt="avatar du profil">
