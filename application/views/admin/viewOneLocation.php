@@ -73,7 +73,7 @@
          <tr>
          <td class="text-end">Kilométrage</td>
             <td colspan="2">
-               <?= form_input(['type' => 'text', 'id' => 'startmileage', 'class' => 'form-control text-center', 'name' => 'startmileage']); ?>
+               <?= form_input(['type' => 'text', 'id' => 'startmileage', 'class' => 'form-control text-center', 'name' => 'startmileage', 'min' => $datum->lastmileage, 'placeholder' => $datum->lastmileage]); ?>
             </td>
          </tr>
          <tr>
