@@ -67,6 +67,7 @@ class User_model extends CI_Model
 		$param_offset = 100;
 		$params = array_slice($this->uri->rsegment_array(), $param_offset);
 		$this->db->select('
+		vehicule.vehicule_id,
 		marque.name as name,
 		modele.name as modele,
 		vehicule.doors,fuelType,mileage,horses,productedYear,picture
@@ -97,4 +98,11 @@ class User_model extends CI_Model
 		return $data;
 		
 	}	
+	public function getDetailsVehicule($id){
+		$this->db->where('vehicule_id', $id);
+        $query = $this->db->get('vehicule');
+        return $query->result();
+
+	}
+	
 }

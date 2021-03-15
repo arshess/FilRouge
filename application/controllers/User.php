@@ -184,22 +184,6 @@ class User extends CI_Controller
 		echo json_encode($data);
 
 	}
-	// public function getVehiculeDispo()
-	// {
-
-	// 	$date = '';
-	// 	$query = '';
-	// 	$type = '';
-	// 	$this->load->model('user_model');
-	// 	if ($this->input->post('query')) {
-	// 		$query = $this->input->post('query');
-	// 		$type = $this->input->post('type');
-	// 		$date = $this->input->post('date');
-	// 	}
-	// 	$data = $this->user_model->getVehicule($date, $query, $type);
-	// 	echo json_encode($data->result());
-	// }
-
 	private function censure($string)
 	{
 		$length = strlen($string);
@@ -212,5 +196,12 @@ class User extends CI_Controller
 			}
 		}
 		return $result;
+	}
+	public function getDetailsVehicule($id){
+		$data['details'] = $this->user_model->getDetailsVehicule($id);
+		$this->load->view('template/header');
+        $this->load->view('detailsVehicule', $data);
+		$this->load->view('template/footer');
+
 	}
 }
