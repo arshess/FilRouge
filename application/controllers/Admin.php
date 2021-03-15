@@ -33,12 +33,29 @@ class Admin extends CI_Controller
 
 	public function showProfil()
 	{
-
 		$this->load->view('template/header');
-		$this->load->view('admin/viewAProfils');
+		$this->load->model('User_model','',true);
+		$data['users'] = $this->User_model->getAllUsers();
+		$this->load->view('admin/viewAProfils',$data);
 		$this->load->view('template/footer');
 	}
 
+	public function deleteAccount($id){
+		$this->load->view('template/header');
+		$this->load->model('User_model','',true);
+		$data['users'] = $this->User_model->getAllUsers();
+		$this->User_model->deleteAccount($id);
+		$this->load->view('admin/viewAProfils',$data);
+		$this->load->view('template/footer');
+	}
+	public function reactivateAccount($id){
+		$this->load->view('template/header');
+		$this->load->model('User_model','',true);
+		$data['users'] = $this->User_model->getAllUsers();
+		$this->User_model->reactivateAccount($id);
+		$this->load->view('admin/viewAProfils',$data);
+		$this->load->view('template/footer');
+	}
 	public function showLocation()
 	{
 		$this->load->view('template/header');
