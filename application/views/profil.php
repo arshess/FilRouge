@@ -53,7 +53,7 @@
     </div>
     <div class="d-flex flex-row-reverse">
         <div class="">
-            Désactiver votre compte <a href="">ici</a>
+            Désactiver votre compte <a href="<?= base_url('User/deleteProfil') ?>">ici</a>
         </div>
     </div>
 </div>

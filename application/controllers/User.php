@@ -95,7 +95,9 @@ class User extends CI_Controller
 	{
 		$this->load->view('template/header');
 		if ($this->session->userdata('email')) {
+			$this->session->unset_userdata('id');
 			$this->session->unset_userdata('email');
+			$this->session->unset_userdata('admin');
 			$this->session->sess_destroy();
 			$this->load->view('modals/deconnexion');
 			$this->load->view('connexion');
@@ -123,7 +125,22 @@ class User extends CI_Controller
 		$this->load->view('template/footer');
 	}
 
+	public function deleteProfil()
+	{
+		$this->load->model('User_model', '', true);
+		$this->load->view('template/header');
 
+		if ($this->session->userdata('id')) {
+			$this->User_model->archiveProfil($this->session->userdata('id'));
+			$this->session->unset_userdata('id');
+			$this->session->unset_userdata('email');
+			$this->session->unset_userdata('admin');
+			$this->load->view('modals/comptedesactive');
+			$this->session->sess_destroy();
+
+		}
+		$this->load->view('template/footer');
+	}
 	public function updateProfil()
 	{
 		$this->load->model('User_model', '', true);
@@ -272,11 +289,11 @@ class User extends CI_Controller
 		}
 		return $result;
 	}
-	public function getDetailsVehicule($id){
+	public function getDetailsVehicule($id)
+	{
 		$data['details'] = $this->user_model->getDetailsVehicule($id);
 		$this->load->view('template/header');
-        $this->load->view('detailsVehicule', $data);
+		$this->load->view('detailsVehicule', $data);
 		$this->load->view('template/footer');
-
 	}
 }

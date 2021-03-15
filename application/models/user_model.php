@@ -6,6 +6,11 @@ class User_model extends CI_Model
 	public function getUser($email = null)
 	{
 		$this->db->where('email', $email);
+		$this->db->where('archived',0);
+		$truc =  $this->db->get('user');
+		return $truc->result();
+	}
+	public function getAllUsers(){
 		$truc =  $this->db->get('user');
 		return $truc->result();
 	}
@@ -19,11 +24,17 @@ class User_model extends CI_Model
 		$data = ['firstName' => $firstname, 'lastName' => $lastname, 'birthDate' => $birthdate, 'address' => $address, 'zipCode' => $zipcode, 'city' => $city, 'IdCard' => $idcard, 'driverLicense' => $license, 'avatar' => $avatar, 'email' => $email];
 		return $this->db->update('user', $data, "user_id = " . $id);
 	}
-public function checkAdmin($id=null){
-	$this->db->select('admin');
-	$query = $this->db->get_where('user',['user_id'=>$id]);
-	return $query->result();
-}
+	public function checkAdmin($id = null)
+	{
+		$this->db->select('admin');
+		$query = $this->db->get_where('user', ['user_id' => $id]);
+		return $query->result();
+	}
+	public function archiveProfil($id){
+		$data = ['archived'=>1];
+		return $this->db->update('user', $data, "user_id = " . $id);
+
+	}
 
 	public function getTypes()
 	{
@@ -103,13 +114,11 @@ public function checkAdmin($id=null){
 
 		$data = $this->db->count_all('vehicule');
 		return $data;
-		
-	}	
-	public function getDetailsVehicule($id){
-		$this->db->where('vehicule_id', $id);
-        $query = $this->db->get('vehicule');
-        return $query->result();
-
 	}
-	
+	public function getDetailsVehicule($id)
+	{
+		$this->db->where('vehicule_id', $id);
+		$query = $this->db->get('vehicule');
+		return $query->result();
+	}
 }
