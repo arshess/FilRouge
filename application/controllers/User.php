@@ -3,8 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class User extends CI_Controller
 {
-
-
 	// public function index()
 	// {
 	// 	$this->load->view('template/header');
@@ -64,6 +62,8 @@ class User extends CI_Controller
 		}
 		$this->load->view('template/footer');
 	}
+
+
 	public function inscription()
 	{
 		$this->load->model('User_model', '', true);
@@ -89,6 +89,8 @@ class User extends CI_Controller
 		}
 		$this->load->view('template/footer');
 	}
+
+
 	public function deconnexion()
 	{
 		$this->load->view('template/header');
@@ -100,6 +102,8 @@ class User extends CI_Controller
 			$this->load->view('template/footer');
 		}
 	}
+
+
 	public function showProfil()
 	{
 		$this->load->model('User_model', '', true);
@@ -108,7 +112,6 @@ class User extends CI_Controller
 			$data = $this->User_model->getUser($this->session->userdata('email'));
 			if ($data[0]->avatar == null) {
 				$data[0]->avatar = 'defaut.png';
-				
 			}
 			$data[0]->IdCard = $this->censure($data[0]->IdCard);
 			$data[0]->driverLicense = $this->censure($data[0]->driverLicense);
@@ -119,6 +122,8 @@ class User extends CI_Controller
 		}
 		$this->load->view('template/footer');
 	}
+
+
 	public function updateProfil()
 	{
 		$this->load->model('User_model', '', true);
@@ -200,6 +205,8 @@ class User extends CI_Controller
 		}
 		$this->load->view('template/footer');
 	}
+
+
 	public function fetch()
 	{
 		$this->load->model('user_model');
@@ -210,6 +217,8 @@ class User extends CI_Controller
 		$data = $this->user_model->fetchModele($query, $type);
 		echo json_encode($data->result());
 	}
+
+
 	public function fetchMarque()
 	{
 		$this->load->model('user_model');
@@ -219,9 +228,10 @@ class User extends CI_Controller
 		$data = $this->user_model->fetchMarque($query);
 		echo json_encode($data->result());
 	}
+
+
 	public function getVehicule()
 	{
-
 		$this->load->model('user_model');
 		if ($this->input->post('query')) {
 			$query = $this->input->post('query');
@@ -247,6 +257,7 @@ class User extends CI_Controller
 	// 	$data = $this->user_model->getVehicule($date, $query, $type);
 	// 	echo json_encode($data->result());
 	// }
+
 
 	private function censure($string)
 	{
