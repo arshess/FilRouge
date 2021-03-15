@@ -8,6 +8,7 @@
             <?php
             foreach ($vehic as $veh) {
             ?>
+            
                <tr>
                   <td class="my-2"><?= $veh->marque; ?></td>
                   <td class="my-2"><?= $veh->modelle; ?></td>
@@ -56,14 +57,19 @@ $config['create_thumb'] = TRUE;
 $config['maintain_ratio'] = TRUE;
 $config['width'] = 75;
 $config['height'] = 50;
-
 $this->load->library('image_lib', $config);
 $this->image_lib->resize();
 ?>
+
                      <img src="<?= base_url('public/images/vehicule/') ?><?=$oneVeh->pic!=NULL?$oneVeh->pic:'noPicsAvailable.png';?>" />
                   </div>
                   <div class="col-12 text-center">
                   <?= form_submit('change', 'Changer', 'class="btn btn-success"'); ?>
+                  </div>
+                  </div>
+                  <div class="row">
+                  <a class="btn btn-danger col-5 mx-auto" href="<?= base_url() ?>Vehicle/deleteVehicule/<?= $oneVeh->idVeh ?>">supprimer</a>
+                  <a class="btn btn-warning col-5 mx-auto" href="<?= base_url() ?>Vehicle/updateVehicule/<?= $oneVeh->idVeh ?>">Modifier</a>
                   </div>
          </div>
          <?php

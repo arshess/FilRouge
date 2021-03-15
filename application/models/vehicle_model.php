@@ -24,6 +24,9 @@ class Vehicle_model extends CI_Model {
 		$this->db->select('
 			vehicule.vehicule_id AS idVeh,
 			vehicule.numberPlate AS immat,
+			vehicule.doors AS doors,
+			vehicule.fuelType AS fuelType,
+			vehicule.horses AS horses,
 			vehicule.picture AS pic,
 			vehicule.mileage AS miles,
 			vehicule.productedYear AS millesime,
@@ -41,8 +44,16 @@ class Vehicle_model extends CI_Model {
 
 	}
 
-
-
+	public function deleteVehicule($id){
+		$this->db->where('vehicule_id',$id);
+		$this->db->delete('vehicule');
+	}
+	public function updateVehicule($id,$data){
+		
+		$this->db->where('vehicule_id', $id);
+        $query = $this->db->update('vehicule', $data);
+        return $query;
+	}
 
 
 }
