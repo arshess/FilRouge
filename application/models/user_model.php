@@ -95,7 +95,7 @@ class User_model extends CI_Model
 		marque.name as name,
 		modele.name as modele,
 		vehicule.doors,fuelType,mileage,horses,productedYear,picture
-		 ');
+		');
 		$this->db->from('vehicule');
 		$this->db->join('modele', 'modele.modele_id = vehicule.modele_id');
 		$this->db->join('marque', 'marque.marque_id = modele.marque_id');
@@ -125,7 +125,38 @@ class User_model extends CI_Model
 	public function getDetailsVehicule($id)
 	{
 		$this->db->where('vehicule_id', $id);
-		$query = $this->db->get('vehicule');
+      $query = $this->db->get('vehicule');
+      return $query->result();
+
+	}
+
+	public function getHistoricLocationUser($id){
+		$this->db->select('
+		location_id as idLoc,
+		location.startedDate as startTime,
+		location.returnDate as endTime,
+		location.mileageStart as startCpt,
+		location.mileageReturn as endCpt,
+		location.vehicule_id as IdVehic,
+		modele.name as Nmodele,
+		marque.name as Nmarque
+		');
+		$this->db->from('location');
+		$this->db->join('vehicule', 'vehicule.vehicule_id = location.vehicule_id', 'left');
+		$this->db->join('modele', 'modele.modele_id = vehicule.vehicule_id', 'left');
+		$this->db->join('marque', 'marque.marque_id = modele.marque_id', 'left');
+		
+		
+		$this->db->where('location.user_id', $id);
+		$query = $this->db->get();
 		return $query->result();
 	}
+
+	
+	public function updateLocationUser($id){
+
+
+
+	}
+
 }

@@ -12,7 +12,8 @@ class User extends CI_Controller
 	public function index($page = 0)
 	{
 		$this->load->library('pagination');
-		$config['base_url'] = 'http://localhost/FILROUGE/index.php/User/index';
+		//$config['base_url'] = 'http://localhost/FILROUGE/index.php/User/index';
+		$config['base_url'] = base_url() . 'index.php/User/index';
 		$config['per_page'] = 10;
 		$config['num_links'] = 10;
 		$config['total_rows'] = $this->user_model->compteRow();
@@ -289,11 +290,31 @@ class User extends CI_Controller
 		}
 		return $result;
 	}
-	public function getDetailsVehicule($id)
-	{
+	public function getDetailsVehicule($id){
+		// $this->load->model('user_model');
 		$data['details'] = $this->user_model->getDetailsVehicule($id);
 		$this->load->view('template/header');
-		$this->load->view('detailsVehicule', $data);
+   	$this->load->view('detailsVehicule', $data);
 		$this->load->view('template/footer');
 	}
+
+	public function getHistoricLocationUser(){
+		$id = $this->session->userdata('id');
+		$this->load->model('user_model');
+		$data['Historic'] = $this->user_model->getHistoricLocationUser($id);
+		$this->load->view('template/header');
+   	$this->load->view('historicLocationUser', $data);
+		$this->load->view('template/footer');
+	}
+
+	public function updateLocationUser(){
+		$id = $this->session->userdata('id');
+		// $this->load->model('user_model');
+		$data['Historic'] = $this->user_model->updateLocationUser($id);
+		$this->load->view('template/header');
+   	$this->load->view('updateLocationUser', $data);
+		$this->load->view('template/footer');
+	}
+
+
 }
