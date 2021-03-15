@@ -15,7 +15,7 @@ class Vehicle extends CI_Controller {
 	}
 
 	public function showOneVehicle($id){
-	
+		$this->load->library('image_lib');
 		$this->load->model('vehicle_model');
 		$data['vehic'] = $this->vehicle_model->list_vehicle();
 	
