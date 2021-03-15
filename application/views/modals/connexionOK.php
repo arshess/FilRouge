@@ -9,7 +9,7 @@
         <p>Votre connexion s'est effectuée sans soucis.</p>
       </div>
       <div class="modal-footer">
-        <a href="<?=base_url()?>" class="btn btn-primary">OK</a>
+        <a href="<?=base_url($return)?>" class="btn btn-primary">OK</a>
       </div>
     </div>
   </div>

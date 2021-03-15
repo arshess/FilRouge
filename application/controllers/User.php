@@ -48,8 +48,9 @@ class User extends CI_Controller
 			foreach ($users as $user) {
 				//si Password = password stocké pour ce mail
 				if (password_verify($this->input->post('inputPassword'), $user->password)) {
-					$this->load->view('/modals/connexionOK');
-					$this->session->set_userdata('id', $user->id_user);
+					$data['return'] = $return;
+					$this->load->view('/modals/connexionOK', $data);
+					$this->session->set_userdata('id', $user->user_id);
 					$this->session->set_userdata('email', $email);
 				} else {
 					$this->load->view('modals/connexionIdInconnu');
@@ -106,9 +107,10 @@ class User extends CI_Controller
 			$data = $this->User_model->getUser($this->session->userdata('email'));
 			if ($data[0]->avatar == null) {
 				$data[0]->avatar = 'defaut.png';
-				$data[0]->IdCard = $this->censure($data[0]->IdCard);
-				$data[0]->driverLicense = $this->censure($data[0]->driverLicense);
+				
 			}
+			$data[0]->IdCard = $this->censure($data[0]->IdCard);
+			$data[0]->driverLicense = $this->censure($data[0]->driverLicense);
 			$this->load->view('profil', $data[0]);
 		} else {
 			$this->load->view('modals/connexionnecessaire');
@@ -125,14 +127,14 @@ class User extends CI_Controller
 		if ($this->session->userdata('id')) {
 			$config['upload_path']          = './public/images/avatar/';
 			$config['allowed_types']        = 'gif|jpg|png';
-			$config['max_size']             = 100;
-			$config['max_width']            = 1024;
-			$config['max_height']           = 768;
+			// $config['max_size']             = 10000;
+			// $config['max_width']            = 2000;
+			// $config['max_height']           = 2000;
 			$config['overwrite']            = TRUE;
 			$config['file_name']            = $this->session->userdata('id');
 
 			$this->load->library('upload', $config);
-			$this->form_validation->set_rules('inputAvatar', 'avatar', 'trim|htmlentities');
+			// $this->form_validation->set_rules('inputAvatar', 'avatar', 'trim|htmlentities');
 			$this->form_validation->set_rules('inputLastname', 'nom de famille', 'ucfirst|trim|htmlentities|required');
 			$this->form_validation->set_rules('inputFirstname', 'prénom', 'ucfirst|trim|htmlentities|required');
 			$this->form_validation->set_rules('inputbirthDate', 'inputbirthDate', 'trim|htmlentities|required');
@@ -149,6 +151,7 @@ class User extends CI_Controller
 				}
 				$this->load->view('updateprofil', $data[0]);
 			} else {
+				$id        = $this->session->userdata('id');
 				$firstname = $this->input->post('inputFirstname');
 				$lastname  = $this->input->post('inputLastname');
 				$birthdate = $this->input->post('inputbirthDate');
@@ -158,8 +161,34 @@ class User extends CI_Controller
 				$idcard    = $this->input->post('inputIdCard');
 				$license   = $this->input->post('inputDriverLicense');
 				$email     = $this->input->post('inputEmail');
-				if ($this->upload->do_upload('userfile')) {
-					if ($this->User_model->updateProfil($firstname, $lastname, $birthdate, $address, $zipcode, $city, $idcard, $license, $email)) {
+				// var_dump($_FILES('inputAvatar'));
+				if ($_FILES['inputAvatar'] != null) {
+
+					if ($this->upload->do_upload('inputAvatar')) {
+						$avatar = $this->upload->data('file_name');
+						// si l'image est trop grande, on la resize
+						if ($this->upload->data('image_width') > 300 || $this->upload->data('image_height') > 300) {
+							$config['image_library']  = 'gd2';
+							$config['source_image']   = './public/images/avatar/' . $avatar;
+							$config['create_thumb']   = TRUE;
+							$config['image_library']  = 'gd2';
+							$config['source_image']   = './public/images/avatar/' . $avatar;
+							$config['create_thumb']   = TRUE;
+							$config['maintain_ratio'] = TRUE;
+							$config['width']          = 200;
+							$config['height']         = 200;
+
+							$this->load->library('image_lib', $config);
+							$this->image_lib->resize();
+						}
+
+						if ($this->User_model->updateProfil($id, $firstname, $lastname, $birthdate, $address, $zipcode, $city, $idcard, $license, $email, $avatar)) {
+							$this->load->view('modals/updateOK');
+						}
+					}
+				} else {
+
+					if ($this->User_model->updateProfil($id, $firstname, $lastname, $birthdate, $address, $zipcode, $city, $idcard, $license, $email)) {
 						$this->load->view('modals/updateOK');
 					}
 				}
@@ -191,7 +220,7 @@ class User extends CI_Controller
 	}
 	public function getVehicule()
 	{
-		
+
 		$this->load->model('user_model');
 		if ($this->input->post('query')) {
 			$query = $this->input->post('query');
@@ -199,9 +228,8 @@ class User extends CI_Controller
 			$limit = $this->input->post('limit');
 			$page = $this->input->post('page');
 		}
-		$data = $this->user_model->getVehicule($query, $type,$limit, $page);
+		$data = $this->user_model->getVehicule($query, $type, $limit, $page);
 		echo json_encode($data);
-
 	}
 	// public function getVehiculeDispo()
 	// {
