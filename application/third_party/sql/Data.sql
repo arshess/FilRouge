@@ -219,8 +219,8 @@ INSERT INTO `user` (`user_id`, `firstName`, `lastName`, `birthDate`, `address`, 
 (97, 'Joey', 'Beahan', '1988-03-27', '1783 O\'Keefe Station', '79437', 'Lake Robyn', '5470414661139506', '3415974065196', NULL, 'eldridge92@example.com', '7bdd45727c17ff5148fe15c1ca21d54b8325e20e', 0, NULL),
 (98, 'Hudson', 'Oberbrunner', '1996-02-06', '72889 Lockman Extensions Suite 017', '44651', 'Ondrickaville', '373122663642964', '8698481600615', NULL, 'oolson@example.org', '45290806626c40ec6aebf30fdd1ce23f5b535b32', 0, NULL),
 (99, 'Rocio', 'Fritsch', '1984-04-04', '10517 Dudley Crescent Apt. 899', '70141', 'Port Sasha', '5421131471579481', '3200529088290', NULL, 'lempi.bailey@example.net', '83ea6878f3763b7f778e7e6e80c0a22c7afdd22a', 0, NULL),
-(100, 'Zechariah', 'Schumm', '1975-05-08', '73536 Marcus Harbors Apt. 311', '20681', 'Port Adan', '5276543189220453', '9990602186343', NULL, 'cormier.terrell@example.org', '263f587745defbd8cb87b45f9ecc4ffe878b72e5', 0, NULL);
-
+(100, 'Zechariah', 'Schumm', '1975-05-08', '73536 Marcus Harbors Apt. 311', '20681', 'Port Adan', '5276543189220453', '9990602186343', NULL, 'cormier.terrell@example.org', '263f587745defbd8cb87b45f9ecc4ffe878b72e5', 0, NULL),
+(101, 'admin', 'admin', null, null, null, null,null, null,null,'admin@admin.com','$2y$10$f7ZaxKHLCxRbSvV2uNZsLeYlJYVcFVBk8exdyoJZfVhvQmTlGAahu',0,1);
 --
 -- Déchargement des données de la table `vehicule`
 --

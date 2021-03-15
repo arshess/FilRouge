@@ -19,7 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <body class="">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand me-5" href="<?=base_url()?>">Location auto</a>
+			<a class="navbar-brand me-5" href="<?= base_url() ?>">Location auto</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -28,23 +28,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<li class="nav-item">
 						<a class="nav-link ms-4" href="#">Nos véhicules</a>
 					</li>
-					<?php if ($this->session->userdata('email')) { ?>
+					<?php if ($this->session->userdata('id')) { ?>
 						<li class="nav-item">
-						<a class="nav-link ms-4" href="<?=base_url('User/showProfil')?>">Profil</a>
-					</li>
-					<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('Admin/showProfil') ?>" tabindex="-1" aria-disabled="true">Gestion Profils</a>
-					</li>
-					<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('Admin/showLocation') ?>" tabindex="-1" aria-disabled="true">Gestion Locations</a>
-					</li>
-					<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('Vehicle/index') ?>" tabindex="-1" aria-disabled="true">Gestion Véhicules</a>
-					</li>
-					<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('User/deconnexion') ?>" tabindex="-1" aria-disabled="true">Déconnexion</a>
-					</li>
-					
+							<a class="nav-link ms-4" href="<?= base_url('User/showProfil') ?>">Profil</a>
+						</li>
+						<?php if ($this->session->userdata('admin') == 1) { ?>
+							<li class="nav-item">
+								<a class="nav-link" href="<?= base_url('Admin/showProfil') ?>" tabindex="-1" aria-disabled="true">Gestion Profils</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="<?= base_url('Admin/showLocation') ?>" tabindex="-1" aria-disabled="true">Gestion Locations</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="<?= base_url('Vehicle/index') ?>" tabindex="-1" aria-disabled="true">Gestion Véhicules</a>
+							</li>
+						<?php } ?>
+						<li class="nav-item">
+							<a class="nav-link" href="<?= base_url('User/deconnexion') ?>" tabindex="-1" aria-disabled="true">Déconnexion</a>
+						</li>
+
 
 
 
