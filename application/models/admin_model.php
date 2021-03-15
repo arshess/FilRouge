@@ -43,6 +43,7 @@ class Admin_model extends CI_Model
 		location.returnDate AS retourDate,
 		vehicule.numberPlate AS immatriculation,
 		vehicule.vehicule_id AS id_vehicule,
+		vehicule.mileage AS lastmileage,
 		plan.designation AS plan, 
 		user.firstName AS Prenom,
 		user.lastName AS Nom,

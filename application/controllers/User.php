@@ -272,4 +272,11 @@ class User extends CI_Controller
 		}
 		return $result;
 	}
+	public function getDetailsVehicule($id){
+		$data['details'] = $this->user_model->getDetailsVehicule($id);
+		$this->load->view('template/header');
+        $this->load->view('detailsVehicule', $data);
+		$this->load->view('template/footer');
+
+	}
 }
