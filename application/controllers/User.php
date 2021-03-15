@@ -13,7 +13,6 @@ class User extends CI_Controller
 	// }
 	public function index($page = 0)
 	{
-
 		$this->load->library('pagination');
 		$config['base_url'] = 'http://localhost/FILROUGE/index.php/User/index';
 		$config['per_page'] = 10;
@@ -52,6 +51,8 @@ class User extends CI_Controller
 					$this->load->view('/modals/connexionOK', $data);
 					$this->session->set_userdata('id', $user->user_id);
 					$this->session->set_userdata('email', $email);
+					// pas fan, mais trop tard pour utiliser une requete sql pour check a chaque chargement du header
+					$this->session->set_userdata('admin', $user->admin);
 				} else {
 					$this->load->view('modals/connexionIdInconnu');
 				}

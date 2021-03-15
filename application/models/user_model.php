@@ -19,7 +19,11 @@ class User_model extends CI_Model
 		$data = ['firstName' => $firstname, 'lastName' => $lastname, 'birthDate' => $birthdate, 'address' => $address, 'zipCode' => $zipcode, 'city' => $city, 'IdCard' => $idcard, 'driverLicense' => $license, 'avatar' => $avatar, 'email' => $email];
 		return $this->db->update('user', $data, "user_id = " . $id);
 	}
-
+public function checkAdmin($id=null){
+	$this->db->select('admin');
+	$query = $this->db->get_where('user',['user_id'=>$id]);
+	return $query->result();
+}
 
 	public function getTypes()
 	{
