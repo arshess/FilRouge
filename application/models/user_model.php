@@ -24,6 +24,10 @@ class User_model extends CI_Model
 		$data = ['firstName' => $firstname, 'lastName' => $lastname, 'birthDate' => $birthdate, 'address' => $address, 'zipCode' => $zipcode, 'city' => $city, 'IdCard' => $idcard, 'driverLicense' => $license, 'avatar' => $avatar, 'email' => $email];
 		return $this->db->update('user', $data, "user_id = " . $id);
 	}
+	public function deleteAccount($id){
+		$this->db->where('user_id',$id);
+		$this->db->delete('user');
+	}
 	public function checkAdmin($id = null)
 	{
 		$this->db->select('admin');
@@ -33,7 +37,10 @@ class User_model extends CI_Model
 	public function archiveProfil($id){
 		$data = ['archived'=>1];
 		return $this->db->update('user', $data, "user_id = " . $id);
-
+	}
+	public function reactivateAccount($id){
+		$data = ['archived'=>0];
+		return $this->db->update('user', $data, "user_id = " . $id);
 	}
 
 	public function getTypes()

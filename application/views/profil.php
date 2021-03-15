@@ -1,9 +1,9 @@
 <?php setlocale(LC_ALL, 'fra.utf8'); ?>
 <div class="container-fluid container_user py-3">
     <div class="container row bg-light ms-auto me-auto rounded">
-        <div class="col-lg-6 my-5">
+        <div class="col-12 col-lg-6 my-5">
             <div class="row">
-                <img id="profil-avatar" src="<?= base_url() . 'public/images/avatar/' . $avatar ?>" alt="avatar du profil">
+                <img id="profil-avatar" class="col-12 col-lg-3" src="<?= base_url() . 'public/images/avatar/' . $avatar ?>" alt="avatar du profil">
             </div>
 
             <p class="row my-3">
