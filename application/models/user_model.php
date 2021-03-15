@@ -5,7 +5,6 @@ class User_model extends CI_Model
 {
 	public function getUser($email = null)
 	{
-		// $this->db->select('*');
 		$this->db->where('email', $email);
 		$truc =  $this->db->get('user');
 		return $truc->result();
@@ -15,8 +14,10 @@ class User_model extends CI_Model
 		$data = ['lastName' => $lastname, 'firstName' => $firstname, 'email' => $email, 'password' => $password,'admin'=>'0'];
 		return $this->db->insert('user', $data);
 	}
-	public function updateProfil(){
-		return true;
+	public function updateProfil($id,$firstname,$lastname,$birthdate,$address,$zipcode,$city,$idcard,$license,$email,$avatar=null){
+		$data = ['firstName'=>$firstname,'lastName'=>$lastname,'birthDate'=>$birthdate,'address'=>$address,'zipCode'=>$zipcode,'city'=>$city,'IdCard'=>$idcard,'driverLicense'=>$license,'avatar'=>$avatar,'email'=>$email];
+		return $this->db->update('user', $data, "id_user = ".$id);
+		
 	}
 
 

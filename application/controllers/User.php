@@ -30,7 +30,7 @@ class User extends CI_Controller
 	}
 
 
-	public function connexion()
+	public function connexion($return = null)
 	{
 		$this->load->model('User_model', '', true);
 		$this->load->library('Form_validation');
@@ -49,8 +49,7 @@ class User extends CI_Controller
 				//si Password = password stocké pour ce mail
 				if (password_verify($this->input->post('inputPassword'), $user->password)) {
 					$this->load->view('/modals/connexionOK');
-					//set session et cookies
-					// set_cookie('email', $email, 604800);
+					$this->session->set_userdata('id', $user->id_user);
 					$this->session->set_userdata('email', $email);
 				} else {
 					$this->load->view('modals/connexionIdInconnu');
@@ -123,11 +122,20 @@ class User extends CI_Controller
 		$this->load->library('Form_validation');
 		$this->load->helper('form');
 		$this->load->view('template/header');
-		if ($this->session->userdata('email')) {
+		if ($this->session->userdata('id')) {
+			$config['upload_path']          = './public/images/avatar/';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 100;
+			$config['max_width']            = 1024;
+			$config['max_height']           = 768;
+			$config['overwrite']            = TRUE;
+			$config['file_name']            = $this->session->userdata('id');
+
+			$this->load->library('upload', $config);
 			$this->form_validation->set_rules('inputAvatar', 'avatar', 'trim|htmlentities');
 			$this->form_validation->set_rules('inputLastname', 'nom de famille', 'ucfirst|trim|htmlentities|required');
 			$this->form_validation->set_rules('inputFirstname', 'prénom', 'ucfirst|trim|htmlentities|required');
-			$this->form_validation->set_rules('inputAddress', 'inputbirthDate', 'trim|htmlentities|required');
+			$this->form_validation->set_rules('inputbirthDate', 'inputbirthDate', 'trim|htmlentities|required');
 			$this->form_validation->set_rules('inputAddress', 'adresse', 'trim|htmlentities|required');
 			$this->form_validation->set_rules('inputZipcode', 'code postal', array('trim', 'htmlentities', 'regex_match[/^(([0-9]{2}|(2A|2a|2B|2b))([0-9]){3})$/]', 'alpha_numeric', 'required'));
 			$this->form_validation->set_rules('inputCity', 'ville', 'ucfirst|trim|htmlentities|required');
@@ -141,8 +149,19 @@ class User extends CI_Controller
 				}
 				$this->load->view('updateprofil', $data[0]);
 			} else {
-				if($this->User_model->updateProfil()){
-					$this->load->view('modals/updateOK');
+				$firstname = $this->input->post('inputFirstname');
+				$lastname  = $this->input->post('inputLastname');
+				$birthdate = $this->input->post('inputbirthDate');
+				$address   = $this->input->post('inputAddress');
+				$zipcode   = $this->input->post('inputZipcode');
+				$city      = $this->input->post('inputCity');
+				$idcard    = $this->input->post('inputIdCard');
+				$license   = $this->input->post('inputDriverLicense');
+				$email     = $this->input->post('inputEmail');
+				if ($this->upload->do_upload('userfile')) {
+					if ($this->User_model->updateProfil($firstname, $lastname, $birthdate, $address, $zipcode, $city, $idcard, $license, $email)) {
+						$this->load->view('modals/updateOK');
+					}
 				}
 			}
 		} else {
