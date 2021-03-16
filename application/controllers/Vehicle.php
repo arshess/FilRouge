@@ -40,9 +40,11 @@ class Vehicle extends CI_Controller {
 			'numberPlate' => $this->input->post('numberPlate'),
 			'mileage' => $this->input->post('mileage'),
 			'horses' => $this->input->post('horses'),
-			'picture' => $this->input->post('picture')
 		);
-
+		$this->form_validation->set_rules('numberPlate', 'numberPlate', 'required');
+        $this->form_validation->set_rules('mileage', 'mileage', 'required');
+		$this->form_validation->set_rules('horses', 'horses', 'required');
+		$this->load->view('template/header');
         if ($this->form_validation->run() == TRUE) {
 			$this->load->model('Vehicle_model');
             $this->Vehicle_model->updateVehicule($id, $data);
@@ -52,6 +54,8 @@ class Vehicle extends CI_Controller {
             $data['oneVehic'] = $this->Vehicle_model->list_OneVehicle($id);
             $this->load->view('/admin/updateVehicule', $data);
         }
+		$this->load->view('template/footer');
+
 	}
 	
 
