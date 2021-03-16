@@ -3,7 +3,7 @@
         <?= form_open_multipart('User/updateProfil', ['class' => 'form-group p-3', 'id' => 'formConnexion']); ?>
         <div class="row">
             <div class="col-lg-6 my-2 d-flex align-items-end">
-                <img id="profil-avatar" src="<?= base_url() . 'public/images/avatar/' . $avatar ?>" alt="avatar du profil">
+                <img id="profil-avatar" class="col-12 col-lg-3" src="<?= base_url() . 'public/images/avatar/' . $avatar ?>" alt="avatar du profil">
                 <input type="file" name="inputAvatar" id="inputAvatar" class="form-control mb-1 mx-1" value="Televersement">
             </div>
             <div class="col-lg-6 my-2 px-2 d-flex flex-column-reverse">

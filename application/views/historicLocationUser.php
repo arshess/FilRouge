@@ -7,7 +7,7 @@
             <th>Kilométrage parcouru</th>
             <th>Date début</th>
             <th>Date fin</th>
-            
+
          </tr>
          <?php
          foreach ($Historik as $datum) {
@@ -22,7 +22,9 @@
             <?php
             }
          foreach ($Historic as $datum) {
+
          ?>
+
             <tr>
                <td><?= $datum->Marque; ?></td>
                <td><?= $datum->modelName; ?></td>
