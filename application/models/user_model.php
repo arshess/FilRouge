@@ -158,5 +158,21 @@ class User_model extends CI_Model
 
 
 	}
+	public function reservate($idVehicle,$idUser,$agency,$mileage,$departDate,$returnDate){
+		$InsertLocation = ['startedDate'=>$departDate,'mileageStart'=>$mileage,'expectedReturnDate'=>$returnDate,'started'=>0,'ended'=>0,'agency_start'=>$agency,'agency_return'=>$agency,'plan_id'=>1,'vehicule_id'=>$idVehicle,'user_id'=>$idUser];
+		$updateVehicule = ['dispo_id'=>'1'];
+		$this->db->trans_start();
+		$this->db->where('vehicule_id', $idVehicle);
+		$this->db->update('vehicule', $updateVehicule);
+		$this->db->insert('location',$InsertLocation);
+		$this->db->trans_complete();
+		if ($this->db->trans_status() === FALSE)
+        {
+            return false;
+        }
+        else{
+            return true;
+        }
+	}
 
 }

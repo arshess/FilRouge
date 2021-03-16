@@ -7,7 +7,7 @@
                 <?php
                 foreach ($types as $type) {
                 ?>
-                    <option value="<?= $type->type_id; ?>"><?php echo $type->name; ?> </option>
+                    <option value="<?= $type->type_id; ?>"><?= $type->name; ?></option>
                 <?php
                 };
                 ?>
@@ -24,15 +24,14 @@
             <p class="col-md-6 my-2 ">
                 <label for="dateDepart">Date de départ</label>
 
-                <?= form_input(['type' => 'date', 'value' => set_value('date'), 'id' => 'dateDepart', 'class' => 'form-control', 'for' => 'dateDepart', 'placeholder' => 'Date', 'name' => 'date']) ?>
+                <?= form_input(['type' => 'date', 'value' => set_value('date'), 'id' => 'dateDepart', 'class' => 'form-control', 'placeholder' => 'Date', 'name' => 'dateDepart']) ?>
 
-                <?= form_error('date') ?>
+                <?= form_error('dateDepart') ?>
             </p>
 
             <p class="col-md-6 my-2">
-            <label for="hourDepart">Heure de depart
-</label>
-                <?= form_input(['type' => 'time', 'value' => set_value('hour'), 'id' => 'hourDepart', 'class' => 'form-control', 'for' => 'hourDepart', 'placeholder' => 'Heure', 'name' => 'hour']) ?>
+                <label for="hourDepart">Heure de depart </label>
+                <?= form_input(['type' => 'time', 'value' => set_value('hour'), 'id' => 'hourDepart', 'class' => 'form-control', 'for' => 'hourDepart', 'placeholder' => 'Heure', 'name' => 'hourDepart']) ?>
 
                 <?= form_error('hour') ?>
             </p>
@@ -42,14 +41,14 @@
             <p class="col-md-6 my-2 ">
                 <label for="dateRetour">Date de retour</label>
 
-                <?= form_input(['type' => 'date', 'value' => set_value('date'), 'id' => 'dateRetour', 'class' => 'form-control', 'for' => 'dateRetour', 'placeholder' => 'Date', 'name' => 'date']) ?>
+                <?= form_input(['type' => 'date', 'value' => set_value('date'), 'id' => 'dateRetour', 'class' => 'form-control', 'for' => 'dateRetour', 'placeholder' => 'Date', 'name' => 'dateRetour']) ?>
 
-                <?= form_error('date') ?>
+                <?= form_error('dateRetour') ?>
             </p>
 
             <p class="col-md-6 my-2">
                 <label for="heureRetour">Heure de retour</label>
-                <?= form_input(['type' => 'time', 'value' => set_value('hour'), 'id' => 'hourRetour', 'class' => 'form-control', 'for' => 'heureRetour', 'placeholder' => 'Heure', 'name' => 'hour']) ?>
+                <?= form_input(['type' => 'time', 'value' => set_value('hour'), 'id' => 'hourRetour', 'class' => 'form-control', 'for' => 'heureRetour', 'placeholder' => 'Heure', 'name' => 'hourRetour']) ?>
 
                 <?= form_error('hour') ?>
             </p>
@@ -78,9 +77,10 @@
                             <td><?= $val->mileage ?></td>
                             <td><?= $val->horses ?></td>
                             <td><?= $val->productedYear ?></td>
-                            <?php if($val->picture==NULL){
-                                $val->picture = 'lambo.jpg';}?>
-                            <td><img src="<?= base_url('public/images/vehicule/').$val->picture; ?>" style="height:50px;width:100px;object-fit: cover;"></td>
+                            <?php if ($val->picture == NULL) {
+                                $val->picture = 'lambo.jpg';
+                            } ?>
+                            <td><img src="<?= base_url('public/images/vehicule/') . $val->picture; ?>" style="height:50px;width:100px;object-fit: cover;"></td>
                             <td><a href="<?= base_url() ?>index.php/User/getDetailsVehicule/<?= $val->vehicule_id ?>"><button class="btn btn-success" value="<?= $val->vehicule_id ?>">Détails véhicule</button></td></a>
                         </tr>
                 <?php }

@@ -26,6 +26,14 @@
    </table>
 </div>
 <div class="col-12 d-flex">
-   <a class="btn btn-secondary col-6" href="<?= base_url() ?>user">Retour </a>
-   <a class="btn btn-danger col-6" href="<?= base_url() ?>user/connexion">Reserver </a>
+   <a class="btn btn-secondary col-6" href="<?= base_url('user') ?>">Retour </a>
+   <?php if ($this->session->userdata('id')) {
+      $truc = 'User/confirmReservation/'.$detail->vehicule_id;
+   } else {
+      $truc = 'user/connexion';
+   } ?>
+   <?php if($this->input->cookie('datestart')&&$this->input->cookie('dateretour')){?>
+      <a class="btn btn-danger col-6" href="<?= base_url($truc) ?>">Reserver </a>
+   <?php } ?>
+   
 </div>

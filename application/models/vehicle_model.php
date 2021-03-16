@@ -30,6 +30,7 @@ class Vehicle_model extends CI_Model {
 			vehicule.picture AS pic,
 			vehicule.mileage AS miles,
 			vehicule.productedYear AS millesime,
+			vehicule.agency_id,
 			agency.name AS agence,
 			marque.name AS marque,
 			modele.name AS modelle

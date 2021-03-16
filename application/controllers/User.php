@@ -295,7 +295,7 @@ class User extends CI_Controller
 		$this->load->view('connexion/forgotpassword');
 		$this->load->view('template/footer');
 	}
-	public function getDetailsVehicule($id)
+	public function getDetailsVehicule($id, $debut = null, $fin = null)
 	{
 		// $this->load->model('user_model');
 		$data['details'] = $this->user_model->getDetailsVehicule($id);
@@ -317,10 +317,26 @@ class User extends CI_Controller
 	public function updateLocationUser()
 	{
 		$id = $this->session->userdata('id');
-		// $this->load->model('user_model');
+		$this->load->model('user_model');
 		$data['Historic'] = $this->user_model->updateLocationUser($id);
 		$this->load->view('template/header');
 		$this->load->view('updateLocationUser', $data);
 		$this->load->view('template/footer');
+	}
+	public function confirmReservation($id)
+	{
+		$departDate = $this->input->cookie('datestart');
+		$returnDate = $this->input->cookie('dateretour');
+		$this->load->model('User_model', '', true);
+		$this->load->model('Vehicle_model', '', true);
+		$vehicule = $this->Vehicle_model->list_OneVehicle($id);
+		$user = $this->User_model->getUser($this->session->userdata('email'));
+		if ($this->User_model->reservate($id, $user[0]->user_id, $vehicule[0]->agency_id, $vehicule[0]->miles, $departDate, $returnDate)) {
+			$this->load->view('template/header');
+			$this->load->view('Reservationok');
+			$this->load->view('template/footer');
+			setcookie("datestart", "", time() - 3600, '/FilRouge');
+			setcookie("dateretour", "", time() - 3600, '/FilRouge');
+		}
 	}
 }
