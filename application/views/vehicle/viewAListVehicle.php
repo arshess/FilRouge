@@ -1,21 +1,25 @@
 <?php
-   
+
 ?>
 <div class="container-fluid">
    <div class="row">
       <div class="col-md-3 overflow-scroll col-12 order-2  order-md-1" style="max-height:75vh; overflow-x:hidden">
          <table>
-            <?php
-            foreach ($vehic as $veh) {
-            ?>
-            
+            <tr>
+               <td class="my-2">Marque</td>
+               <td class="my-2">Modèle</td>
+               <td class="my-2">Immat</a></td>
+            </tr> <?php
+                  foreach ($vehic as $veh) {
+                  ?>
+
                <tr>
                   <td class="my-2"><?= $veh->marque; ?></td>
                   <td class="my-2"><?= $veh->modelle; ?></td>
                   <td class="my-2"><a href="<?= base_url('Vehicle/showOneVehicle') ?>/<?= $veh->idVeh; ?>"><?= $veh->immat; ?></a></td>
                </tr>
             <?php
-            }
+                  }
             ?>
          </table>
       </div>
@@ -23,10 +27,10 @@
          <div class="row">
             <? form_open('Vehicle/updateVehicle')?>
             <?php
-               if (isset($oneVehic)) {
-                  foreach ($oneVehic as $oneVeh) {
-               ?>
-                  
+            if (isset($oneVehic)) {
+               foreach ($oneVehic as $oneVeh) {
+            ?>
+
                   <div class="col-12 text-center">
                      <?= $oneVeh->immat; ?>
                   </div>
@@ -50,34 +54,34 @@
                   </div>
                   <div class="col-12 text-center">
                      <?php
-$config['image_library'] = 'gd2';
-$config['source_image'] = base_url('public/images/vehicule/') . $oneVeh->pic;
-//var_dump($oneVeh->pic);
-$config['create_thumb'] = TRUE;
-$config['maintain_ratio'] = TRUE;
-$config['width'] = 75;
-$config['height'] = 50;
-$this->load->library('image_lib', $config);
-$this->image_lib->resize();
-?>
+                     $config['image_library'] = 'gd2';
+                     $config['source_image'] = base_url('public/images/vehicule/') . $oneVeh->pic;
+                     //var_dump($oneVeh->pic);
+                     $config['create_thumb'] = TRUE;
+                     $config['maintain_ratio'] = TRUE;
+                     $config['width'] = 75;
+                     $config['height'] = 50;
+                     $this->load->library('image_lib', $config);
+                     $this->image_lib->resize();
+                     ?>
 
-                     <img src="<?= base_url('public/images/vehicule/') ?><?=$oneVeh->pic!=NULL?$oneVeh->pic:'noPicsAvailable.png';?>" />
+                     <img src="<?= base_url('public/images/vehicule/') ?><?= $oneVeh->pic != NULL ? $oneVeh->pic : 'noPicsAvailable.png'; ?>" />
                   </div>
                   <div class="col-12 text-center">
-                  <?= form_submit('change', 'Changer', 'class="btn btn-success"'); ?>
-                  </div>
-                  </div>
-                  <div class="row">
-                  <a class="btn btn-danger col-5 mx-auto" href="<?= base_url() ?>Vehicle/deleteVehicule/<?= $oneVeh->idVeh ?>">supprimer</a>
-                  <a class="btn btn-warning col-5 mx-auto" href="<?= base_url() ?>Vehicle/updateVehicule/<?= $oneVeh->idVeh ?>">Modifier</a>
+                     <?= form_submit('change', 'Changer', 'class="btn btn-success"'); ?>
                   </div>
          </div>
-         <?php
+         <div class="row">
+            <a class="btn btn-danger col-5 mx-auto" href="<?= base_url() ?>Vehicle/deleteVehicule/<?= $oneVeh->idVeh ?>">supprimer</a>
+            <a class="btn btn-warning col-5 mx-auto" href="<?= base_url() ?>Vehicle/updateVehicule/<?= $oneVeh->idVeh ?>">Modifier</a>
+         </div>
+      </div>
+<?php
                }
             }
-   ?>
-   <? form_close();?>
-      </div>
-
+?>
+<? form_close();?>
    </div>
+
+</div>
 </div>
