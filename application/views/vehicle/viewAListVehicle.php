@@ -68,9 +68,11 @@ $this->image_lib->resize();
                   </div>
                   </div>
                   <div class="row">
-                  <a class="btn btn-danger col-5 mx-auto" href="<?= base_url() ?>Vehicle/deleteVehicule/<?= $oneVeh->idVeh ?>">supprimer</a>
+                  <a class="btn btn-danger col-5 mx-auto" href="<?= base_url() ?>Vehicle/deleteVehicule/<?= $oneVeh->idVeh ?>">Supprimer</a>
                   <a class="btn btn-warning col-5 mx-auto" href="<?= base_url() ?>Vehicle/updateVehicule/<?= $oneVeh->idVeh ?>">Modifier</a>
-                  </div>
+                  <a class="btn btn-primary col-5 mt-3 mx-auto" href="<?= base_url() ?>Vehicle/addVehicule">Ajouter</a>
+
+               </div>
          </div>
          <?php
                }

@@ -54,6 +54,28 @@ class Vehicle_model extends CI_Model {
         $query = $this->db->update('vehicule', $data);
         return $query;
 	}
+	public function getTypes()
+	{
+		$query = $this->db->get('type');
+		return $query->result();
+	}
+	public function getModeles(){
+		$query = $this->db->get('modele');
+	    return $query->result();
+	}
+	public function getAgency(){
+		$query = $this->db->get('agency');
+	    return $query->result();
+	}
+	public function getDispo(){
+		$query = $this->db->get('disponibility');
+		
+	    return $query->result();
+	}
+	public function addVehicule( $data){
+		$query = $this->db->insert('vehicule', $data);
+        return $query;
+	}
 
 
 }

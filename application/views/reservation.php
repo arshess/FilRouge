@@ -56,8 +56,8 @@
         </div>
 
         <?= form_close() ?>
-        <div class="row col-12">
-            <table class="table mt-5" id="getVehicule" name="getVehicule">
+        <div class="row">
+            <table class="table mt-5 col-12" id="getVehicule" name="getVehicule">
                 <?php if ($_SERVER['REQUEST_METHOD'] != 'POST') { ?>
                     <tr style="text-align: center;">
                         <th>Marque</th>
@@ -78,7 +78,7 @@
                             <td><?= $val->mileage ?></td>
                             <td><?= $val->horses ?></td>
                             <td><?= $val->productedYear ?></td>
-                            <td><img src="<?= base_url('public/images/vehicules/') ?>lambo<?= $val->picture; ?>" style="height:50px;width:100px;object-fit: cover;"></td>
+                            <td><img src="<?= base_url('public/images/vehicule/') ?><?= $val->picture; ?>" style="height:50px;width:100px;object-fit: cover;"></td>
                             <td><a href="<?= base_url() ?>index.php/User/getDetailsVehicule/<?= $val->vehicule_id ?>"><button class="btn btn-success" value="<?= $val->vehicule_id ?>">Détails véhicule</button></td></a>
                         </tr>
                 <?php }

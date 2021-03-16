@@ -10,7 +10,7 @@
 <?php 
 foreach($details as $detail): ?>
    <tr>
-   <tr colspan="5" style="text-align:center;"><img src="<?=base_url('public/images/vehicules/')?>lambo<?=$detail->picture;?>" style="height:500px;width:auto;object-fit: cover;"></tr>
+   <tr colspan="5" style="text-align:center;"><img src="<?=base_url('public/images/vehicule/')?><?=$detail->picture;?>" style="height:300px;width:600px;object-fit: cover;"></tr>
    </tr>
    <tr style="text-align: center;">
    <td><?= $detail->doors;?></td>
