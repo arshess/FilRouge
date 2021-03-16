@@ -28,29 +28,32 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<li class="nav-item">
 						<a class="nav-link ms-4" href="<?= base_url('User') ?>" tabindex="-1" aria-disabled="true">Nos véhicules</a>
 					</li>
-					<?php if ($this->session->userdata('id')) { ?>
+					<?php if ($this->session->userdata('id') && $this->session->userdata('admin') != 1) { ?>
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profil</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-							<li><a class="dropdown-item" href="<?= base_url('User/showProfil') ?>" tabindex="-1" aria-disabled="true">Afficher profil</a></li>
-							
-							<li><a class="dropdown-item" href="<?= base_url('User/updateLocationUser') ?>" tabindex="-1" aria-disabled="true">Modifier une réservation</a></li>
-
-							<li><a class="dropdown-item" href="<?= base_url('User/getHistoricLocationUser') ?>" tabindex="-1" aria-disabled="true">Historique</a></li>
-						</ul>
+						<li>
+							<a class="nav-link" href="<?= base_url('User/showProfil') ?>" tabindex="-1" aria-disabled="true">Profil</a>
 						</li>
-						<?php if ($this->session->userdata('admin') == 1) { ?>
-							<li class="nav-item">
-								<a class="nav-link" href="<?= base_url('Admin/showProfil') ?>" tabindex="-1" aria-disabled="true">Gestion Profils</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="<?= base_url('Admin/showLocation') ?>" tabindex="-1" aria-disabled="true">Gestion Locations</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="<?= base_url('Vehicle/index') ?>" tabindex="-1" aria-disabled="true">Gestion Véhicules</a>
-							</li>
-						<?php } ?>
+						<li>
+							<a class="nav-link" href="<?= 1 == 0 ? base_url('User/updateLocationUser') : '#' ?>" tabindex="-1" aria-disabled="true">Modifier une réservation</a>
+						</li>
+						<li>
+							<a class="nav-link" href="<?= base_url('User/getHistoricLocationUser') ?>" tabindex="-1" aria-disabled="true">Historique</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="<?= base_url('User/deconnexion') ?>" tabindex="-1" aria-disabled="true">Déconnexion</a>
+						</li>
+						</ul>
+					<?php } elseif ($this->session->userdata('admin') == 1) { ?>
+						<li class="nav-item">
+							<a class="nav-link" href="<?= base_url('Admin/showProfil') ?>" tabindex="-1" aria-disabled="true">Gestion Profils</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="<?= base_url('Admin/showLocation') ?>" tabindex="-1" aria-disabled="true">Gestion Locations</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="<?= base_url('Vehicle/index') ?>" tabindex="-1" aria-disabled="true">Gestion Véhicules</a>
+						</li>
+						<?php  ?>
 						<li class="nav-item">
 							<a class="nav-link" href="<?= base_url('User/deconnexion') ?>" tabindex="-1" aria-disabled="true">Déconnexion</a>
 						</li>
@@ -59,6 +62,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 					<?php  } else { ?>
+
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Connexion / Inscription

@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark piedpage">
+    <div class="container-fluid piedpage">
         <div class="navbar-nav container row m-auto">
             <a class="nav-link col-md-3" href="<?= base_url('Bateau/mentionsLegales') ?>">MENTION LEGALE</a>
             <a class="nav-link col-md-3" href="<?= base_url('Bateau/planDuSite') ?>">PLAN DU SITE</a>

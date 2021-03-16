@@ -78,7 +78,7 @@
                             <td><?= $val->mileage ?></td>
                             <td><?= $val->horses ?></td>
                             <td><?= $val->productedYear ?></td>
-                            <td><img src="<?= base_url('public/images/vehicules/') ?>lambo<?= $val->picture; ?>" style="height:50px;width:100px;object-fit: cover;"></td>
+                            <td><img src="<?= base_url('public/images/vehicule/') ?><?= $val->picture; ?>" style="height:50px;width:100px;object-fit: cover;"></td>
                             <td><a href="<?= base_url() ?>index.php/User/getDetailsVehicule/<?= $val->vehicule_id ?>"><button class="btn btn-success" value="<?= $val->vehicule_id ?>">Détails véhicule</button></td></a>
                         </tr>
                 <?php }

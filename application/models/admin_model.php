@@ -69,14 +69,14 @@ class Admin_model extends CI_Model
 		$dataloc['mileageStart'] = $data['mileageStart'];
 		$dataloc['started'] = $data['started'];
 		$id = $data['location_id'];
-		
 		$idVehicule = $data['vehicule_id'];
 		$dataveh['dispo_id'] = $data['dispo_id'];
 		
 		$this->db->trans_start();
+		// update location pour date depart 
 		$this->db->where('location_id', $id);
 		$this->db->update('location', $dataloc);
-
+		// update vehicule pour dire qu'il n'est pas disponible
 		$this->db->where('vehicule_id', $idVehicule);
 		$this->db->update('vehicule', $dataveh);
 		
@@ -84,24 +84,20 @@ class Admin_model extends CI_Model
 	}
 
 	public function updateAdminRet($data){
-		//$dataloc['dispo_id'] = $data['dispo_id'];
 		$dataloc['returnDate'] = $data['returnDate'];
 		$dataloc['mileageReturn'] = $data['mileageReturn'];
 		$dataloc['ended'] = $data['ended'];
-
 		$id = $data['location_id'];
-		
 		$this->db->trans_start();
-
+		// update table location
 		$this->db->where('location_id', $id);
 		$this->db->update('location', $dataloc);
-		
+		// update table vehicule
 		$idVehicule = $data['vehicule_id'];
 		$dataveh['dispo_id'] = $data['dispo_id'];
-
+		$dataveh['mileage'] = $data['returnDate'];
 		$this->db->where('vehicule_id', $idVehicule);
 		$this->db->update('vehicule', $dataveh);
-		
 		return $this->db->trans_complete();
 	}
 
@@ -157,7 +153,6 @@ class Admin_model extends CI_Model
 		modele.name as modele
 		'
 		);
-
 		$this->db->from('location');
 		$this->db->join('vehicule', 'location.vehicule_id = vehicule.vehicule_id', 'left');
 		$this->db->join('user', 'location.user_id = user.user_id', 'left');

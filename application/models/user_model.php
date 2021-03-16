@@ -138,13 +138,14 @@ class User_model extends CI_Model
 		location.mileageStart as startCpt,
 		location.mileageReturn as endCpt,
 		location.vehicule_id as IdVehic,
-		modele.name as Nmodele,
-		marque.name as Nmarque
+		vehicule.horses as horses,
+		modele.name as modelName,
+		marque.name as Marque
 		');
 		$this->db->from('location');
 		$this->db->join('vehicule', 'vehicule.vehicule_id = location.vehicule_id', 'left');
-		$this->db->join('modele', 'modele.modele_id = vehicule.vehicule_id', 'left');
-		$this->db->join('marque', 'marque.marque_id = modele.marque_id', 'left');
+		$this->db->join('modele', 'vehicule.modele_id = modele.modele_id', 'left');
+		$this->db->join('marque', 'modele.marque_id = marque.marque_id', 'left');
 		
 		
 		$this->db->where('location.user_id', $id);
