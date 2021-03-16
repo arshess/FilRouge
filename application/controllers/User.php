@@ -306,6 +306,14 @@ class User extends CI_Controller
    	$this->load->view('historicLocationUser', $data);
 		$this->load->view('template/footer');
 	}
+	public function getHistoricInLocationUser(){
+		$id = $this->session->userdata('id');
+		$this->load->model('user_model');
+		$data['Historic'] = $this->user_model->getHistoricLocationUser($id);
+		$this->load->view('template/header');
+   	$this->load->view('historicLocationUser', $data);
+		$this->load->view('template/footer');
+	}
 
 	public function updateLocationUser(){
 		$id = $this->session->userdata('id');
