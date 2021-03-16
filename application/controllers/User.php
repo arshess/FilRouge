@@ -77,7 +77,7 @@ class User extends CI_Controller
 		$this->form_validation->set_rules('inputPassword', 'mot de passe ', 'trim|htmlentities|min_length[8]|required');
 		$this->form_validation->set_rules('inputPassword2', 'confirmation du mot de passe ', 'trim|htmlentities|min_length[8]|matches[inputPassword]|required');
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('inscription');
+			$this->load->view('connexion/inscription');
 		} else {
 			$firstname = $this->input->post('inputFirstname');
 			$lastname  = $this->input->post('inputLastname');
