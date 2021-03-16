@@ -88,6 +88,9 @@ $(document).ready(function() {
                         var horses = element.horses;
                         var productedYear = element.productedYear;
                         var picture = element.picture;
+                        if(picture == null){
+                            picture = 'lambo.jpg';
+                        }
                         var vehicule_id = element.vehicule_id;
                         $('#getVehicule').append(
                             `<tr  style="text-align: center;">
@@ -98,7 +101,8 @@ $(document).ready(function() {
                         <td>${mileage}</td>
                         <td>${horses}</td>
                         <td>${productedYear}</td>
-                        <td><img src="../public/images/vehicules/lambo${picture}" style="height:50px;width:100px;object-fit: cover;"></td>
+                        
+                        <td><img src="./public/images/vehicule/${picture}" style="height:50px;width:100px;object-fit: cover;"></td>
                         <td><a href="http://localhost/FilRouge/index.php/User/connexion"><button class="btn btn-warning">Réserver</button></td></a>
                         <td><a href="http://localhost/FilRouge/index.php/User/getDetailsVehicule/${vehicule_id}"><button class="btn btn-success" value="<?= $val->vehicule_id?>">Détails véhicule</button></td></a>
                         </td>

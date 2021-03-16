@@ -31,14 +31,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<?php if ($this->session->userdata('id')) { ?>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profil</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-							<li><a class="dropdown-item" href="<?= base_url('User/showProfil') ?>" tabindex="-1" aria-disabled="true">Afficher profil</a></li>
-							
-							<li><a class="dropdown-item" href="<?= base_url('User/updateLocationUser') ?>" tabindex="-1" aria-disabled="true">Modifier une réservation</a></li>
+								<li><a class="dropdown-item" href="<?= base_url('User/showProfil') ?>" tabindex="-1" aria-disabled="true">Afficher profil</a></li>
 
-							<li><a class="dropdown-item" href="<?= base_url('User/getHistoricLocationUser') ?>" tabindex="-1" aria-disabled="true">Historique</a></li>
-						</ul>
+								<li><a class="dropdown-item" href="<?= base_url('User/updateLocationUser') ?>" tabindex="-1" aria-disabled="true">Modifier une réservation</a></li>
+
+								<li><a class="dropdown-item" href="<?= base_url('User/getHistoricLocationUser') ?>" tabindex="-1" aria-disabled="true">Historique</a></li>
+							</ul>
 						</li>
 						<?php if ($this->session->userdata('admin') == 1) { ?>
 							<li class="nav-item">

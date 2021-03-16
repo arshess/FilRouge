@@ -38,7 +38,7 @@ class User extends CI_Controller
 		$this->form_validation->set_rules('inputEmail', 'email', 'trim|htmlentities|valid_email|required');
 		$this->form_validation->set_rules('inputPassword', 'mot de passe ', 'trim|htmlentities|min_length[8]|required');
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('connexion');
+			$this->load->view('connexion/connexion');
 		} else {
 			$email = $this->input->post('inputEmail');
 			$users = $this->User_model->getUser($email);
@@ -59,7 +59,7 @@ class User extends CI_Controller
 			if (sizeof($users) == 0) {
 				$this->load->view('modals/connexionIdInconnu');
 			}
-			$this->load->view('connexion');
+			$this->load->view('connexion/connexion');
 		}
 		$this->load->view('template/footer');
 	}
@@ -85,7 +85,7 @@ class User extends CI_Controller
 			$password  = password_hash($this->input->post('inputPassword'), PASSWORD_DEFAULT);
 			if ($this->User_model->addUser($firstname, $lastname, $email, $password)) {
 				$this->load->view('modals/inscription1ok');
-				$this->load->view('inscription');
+				$this->load->view('connexion/inscription');
 			}
 		}
 		$this->load->view('template/footer');
@@ -101,7 +101,7 @@ class User extends CI_Controller
 			$this->session->unset_userdata('admin');
 			$this->session->sess_destroy();
 			$this->load->view('modals/deconnexion');
-			$this->load->view('connexion');
+			$this->load->view('connexion/connexion');
 			$this->load->view('template/footer');
 		}
 	}
@@ -121,7 +121,7 @@ class User extends CI_Controller
 			$this->load->view('profil', $data[0]);
 		} else {
 			$this->load->view('modals/connexionnecessaire');
-			$this->load->view('connexion');
+			$this->load->view('connexion/connexion');
 		}
 		$this->load->view('template/footer');
 	}
@@ -138,7 +138,6 @@ class User extends CI_Controller
 			$this->session->unset_userdata('admin');
 			$this->load->view('modals/comptedesactive');
 			$this->session->sess_destroy();
-
 		}
 		$this->load->view('template/footer');
 	}
@@ -219,7 +218,7 @@ class User extends CI_Controller
 			}
 		} else {
 			$this->load->view('modals/connexionnecessaire');
-			$this->load->view('connexion');
+			$this->load->view('connexion/connexion');
 		}
 		$this->load->view('template/footer');
 	}
@@ -290,31 +289,38 @@ class User extends CI_Controller
 		}
 		return $result;
 	}
-	public function getDetailsVehicule($id){
+	public function forgotPassword()
+	{
+		$this->load->view('template/header');
+		$this->load->view('connexion/forgotpassword');
+		$this->load->view('template/footer');
+	}
+	public function getDetailsVehicule($id)
+	{
 		// $this->load->model('user_model');
 		$data['details'] = $this->user_model->getDetailsVehicule($id);
 		$this->load->view('template/header');
-   	$this->load->view('detailsVehicule', $data);
+		$this->load->view('detailsVehicule', $data);
 		$this->load->view('template/footer');
 	}
 
-	public function getHistoricLocationUser(){
+	public function getHistoricLocationUser()
+	{
 		$id = $this->session->userdata('id');
 		$this->load->model('user_model');
 		$data['Historic'] = $this->user_model->getHistoricLocationUser($id);
 		$this->load->view('template/header');
-   	$this->load->view('historicLocationUser', $data);
+		$this->load->view('historicLocationUser', $data);
 		$this->load->view('template/footer');
 	}
 
-	public function updateLocationUser(){
+	public function updateLocationUser()
+	{
 		$id = $this->session->userdata('id');
 		// $this->load->model('user_model');
 		$data['Historic'] = $this->user_model->updateLocationUser($id);
 		$this->load->view('template/header');
-   	$this->load->view('updateLocationUser', $data);
+		$this->load->view('updateLocationUser', $data);
 		$this->load->view('template/footer');
 	}
-
-
 }

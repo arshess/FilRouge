@@ -12,7 +12,7 @@
         <?= form_error('inputPassword', '<div class="alert alert-warning">', '</div>');?>
     </div>
     <div class="row my-3">
-        <a href="" class="text-end">Mot de passe oublié ?</a>
+        <a href="<?=base_url('User/forgotpassword')?>" class="text-end">Mot de passe oublié ?</a>
     </div>
     <div class="row my-3">
     <?= form_input(['type'=>'submit', 'class' => 'btn btn-primary fw-bold','value'=>'Connexion']); ?>
