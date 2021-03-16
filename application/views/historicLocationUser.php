@@ -15,12 +15,21 @@
                <tr>
                   <td><?= $datum->Marque; ?></td>
                   <td><?= $datum->modelName; ?></td>
-                  <td><?= $datum->endCpt - $datum->startCpt; ?></td>
+                  <td>En cours</td>
                   <td>du <?= $datum->startTime; ?></td>
                   <td>au <?= $datum->endTime; ?></td>
                </tr>
             <?php
             }
+            ?>
+            <tr>
+            <th>Marque</th>
+            <th>Modele</th>
+            <th>Kilométrage parcouru</th>
+            <th>Date début</th>
+            <th>Date fin</th>
+         </tr>
+         <?php
          foreach ($Historic as $datum) {
          ?>
             <tr>

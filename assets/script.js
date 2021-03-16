@@ -1,8 +1,10 @@
+var base_url = window.location.origin;
 $(document).ready(function() {
     function load_modele(query, type) {
+        
         var type = $('#type').val();
         $.ajax({
-            url: "http://localhost/FilRouge/index.php/user/fetch",
+            url: base_url + "/index.php/user/fetch",
             method: "POST",
             data: {
                 query: query,
@@ -35,7 +37,7 @@ $(document).ready(function() {
 
     function load_data(query) {
         $.ajax({
-            url: "http://localhost/FilRouge/index.php/user/fetchMarque",
+            url: base_url + "/index.php/user/fetchMarque",
             method: "POST",
             data: {
                 query: query
@@ -69,7 +71,7 @@ $(document).ready(function() {
 
         var type = $('#type').val();
         $.ajax({
-            url: "http://localhost/FilRouge/index.php/user/getVehicule",
+            url: base_url + "/index.php/user/getVehicule",
             method: 'POST',
             data: {
                 query: query,

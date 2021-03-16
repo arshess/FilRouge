@@ -152,6 +152,29 @@ class User_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}
+	public function getHistoricInLocationUser($id){
+		$this->db->select('
+		location_id as idLoc,
+		location.startedDate as startTime,
+		location.returnDate as endTime,
+		location.mileageStart as startCpt,
+		location.mileageReturn as endCpt,
+		location.vehicule_id as IdVehic,
+		vehicule.horses as horses,
+		modele.name as modelName,
+		marque.name as Marque
+		');
+		$this->db->from('location');
+		$this->db->join('vehicule', 'vehicule.vehicule_id = location.vehicule_id', 'left');
+		$this->db->join('modele', 'vehicule.modele_id = modele.modele_id', 'left');
+		$this->db->join('marque', 'modele.marque_id = marque.marque_id', 'left');
+		$this->db->where('started','1');
+		
+		
+		$this->db->where('location.user_id', $id);
+		$query = $this->db->get();
+		return $query->result();
+	}
 
 	
 	public function updateLocationUser($id){
