@@ -55,8 +55,8 @@
         </div>
 
         <?= form_close() ?>
-        <div class="row col-12">
-            <table class="table mt-5" id="getVehicule" name="getVehicule">
+        <div class="row">
+            <table class="table mt-5 col-12" id="getVehicule" name="getVehicule">
                 <?php if ($_SERVER['REQUEST_METHOD'] != 'POST') { ?>
                     <tr style="text-align: center;">
                         <th>Marque</th>

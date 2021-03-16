@@ -1,24 +1,22 @@
-<div class="row">
-    <div class="col-md-10">
-        <?php foreach ($oneVehic as $oneVehic ):?>
-    <?= form_open('Vehicle/updateVehicule/'.$oneVehic->idVeh, ['class' => 'form-group row justify-content-center']) ?>
-            <p class="col-md-5 my-2 mx-2">
-            <?= form_input('numberPlate', set_value('numberPlate', $oneVehic->immat), ['id' => 'numberPlate', 'class' => 'form-control', 'placeholder' => 'numberPlate']) ?>
+    <div class="col-md-12">
+    <?= form_open('Vehicle/updateVehicule/'.$oneVehic[0]->idVeh, ['class' => 'form-group  justify-content-center row']) ?>
+            <p class="text-center col-md-6 m-2">
+            <?= form_label('plaque d\'immatriculation', 'numberPlate'); ?>
+            <?= form_input('numberPlate', set_value('numberPlate', $oneVehic[0]->immat), ['id' => 'numberPlate', 'class' => 'form-control', 'name' => 'numberPlate', 'for' => 'numberPlate', 'placeholder' => 'numberPlate']) ?>
                 <?= form_error('numberPlate'); ?>
             </p>
-            <p class="col-md-5 my-2 mx-2">
-            <?= form_input(' mileage', set_value('mileage', $oneVehic-> miles), ['id' => ' mileage', 'class' => 'form-control', 'placeholder' => ' mileage']) ?>
+            <p class="text-center col-md-6 m-2">
+            <?= form_label('Kilométrage', 'mileage'); ?>
+            <?= form_input(' mileage', set_value('mileage', $oneVehic[0]-> miles), ['id' => ' mileage', 'class' => 'form-control', 'name' => 'mileage', 'for' => 'mileage', 'placeholder' => ' mileage']) ?>
                 <?= form_error(' mileage'); ?>
             </p>
-            <p class="col-md-5 my-2 mx-2">
-            <?= form_input('horses', set_value('horses', $oneVehic->  horses), ['id' => '  horses', 'class' => 'form-control', 'placeholder' => '  horses']) ?>
+            <p class="text-center col-md-6 m-2">
+            <?= form_label('Puissance DIN', 'horses'); ?>
+
+            <?= form_input('horses', set_value('horses', $oneVehic[0]->  horses), ['id' => '  horses', 'class' => 'form-control', 'name' => 'horses', 'for' => 'horses', 'placeholder' => '  horses']) ?>
                 <?= form_error('horses'); ?>
             </p>
-            <p class="col-md-5 my-2 mx-2">
-            <?= form_input('picture', set_value('picture', $oneVehic->  pic), ['id' => '  picture', 'class' => 'form-control', 'placeholder' => '  picture']) ?>
-                <?= form_error('picture'); ?>
-            </p>
-            <?php endforeach; ?>            <?= form_submit('mysubmit', 'Envoyer', ['class' => 'col-md-10 btn btn-primary']); ?>
+            
+    <?= form_submit('mysubmit', 'Envoyer', ['class' => 'col-md-6 col-12 btn btn-primary m-2 p-0']); ?>
         <?= form_close() ?>
     </div>
-</div>
