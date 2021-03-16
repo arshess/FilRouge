@@ -16,7 +16,7 @@ class User_model extends CI_Model
 	}
 	public function addUser($firstname, $lastname, $email, $password)
 	{
-		$data = ['lastName' => $lastname, 'firstName' => $firstname, 'email' => $email, 'password' => $password, 'admin' => '0'];
+		$data = ['lastName' => $lastname, 'firstName' => $firstname, 'email' => $email, 'password' => $password, 'admin' => '0','archived'=>'0'];
 		return $this->db->insert('user', $data);
 	}
 	public function updateProfil($id, $firstname, $lastname, $birthdate, $address, $zipcode, $city, $idcard, $license, $email, $avatar = null)
